@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>【pytorch学习】之数据操作 | xuan</title><meta name="keywords" content="pytorch"><meta name="author" content="rescal-xuan"><meta name="copyright" content="rescal-xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="【pytorch学习】之数据操作"><meta name="application-name" content="【pytorch学习】之数据操作"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta name="referrer" content="no-referrer"><meta property="og:type" content="article"><meta property="og:title" content="【pytorch学习】之数据操作"><meta property="og:url" content="https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/index.html"><meta property="og:site_name" content="xuan"><meta property="og:description" content="1 数据操作为了能够完成各种数据操作，我们需要某种方法来存储和操作数据。通常，我们需要做两件重要的事：（1）获取数据；（2）将数据读入计算机后对其进行处理。如果没有某种方法来存储数据，那么获取数据是没有意义的。 首先，我们介绍n维数组，也称为张量（tensor）。使用过Python中NumPy计算包"><meta property="og:locale" content="en"><meta property="og:image" content="https://avatars.githubusercontent.com/u/116327853?v=4"><meta property="article:author" content="rescal-xuan"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://avatars.githubusercontent.com/u/116327853?v=4"><meta name="description" content="1 数据操作为了能够完成各种数据操作，我们需要某种方法来存储和操作数据。通常，我们需要做两件重要的事：（1）获取数据；（2）将数据读入计算机后对其进行处理。如果没有某种方法来存储数据，那么获取数据是没有意义的。 首先，我们介绍n维数组，也称为张量（tensor）。使用过Python中NumPy计算包"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"xuan","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"Author: rescal-xuan","link":"Link: ","source":"Source: xuan","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.","copySuccess":"Copy success, copy and reprint please mark the address of this article"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'xuan',
+  title: '【pytorch学习】之数据操作',
+  postAI: '',
+  pageFillDescription: '1 数据操作, 1.1 入门, 1.2 运算符, 1.3 广播机制, 1.4 索引和切片, 1.5 节省内存, 1.6 转换为其他Python对象, 总结：数据操作为了能够完成各种数据操作我们需要某种方法来存储和操作数据通常我们需要做两件重要的事获取数据将数据读入计算机后对其进行处理如果没有某种方法来存储数据那么获取数据是没有意义的首先我们介绍维数组也称为张量使用过中计算包的读者会对本部分很熟悉无论使用哪个深度学习框架它的张量类在中为在和中为都与的类似但深度学习框架又比的多一些重要功能首先很好地支持加速计算而仅支持计算其次张量类支持自动微分这些功能使得张量类更适合深度学习注后续涉及的代码皆是在第三方库的支持下的安装不做过多赘述如需访问百度搜索对应教程入门首先我们导入请注意虽然它被称为但是代码中使用而不是张量表示一个由数值组成的数组这个数组可能有多个维度具有一个轴的张量对应数学上的向量具有两个轴的张量对应数学上的矩阵具有两个轴以上的张量没有特殊的数学名称首先我们可以使用创建一个行向量这个行向量包含以开始的前个整数它们默认创建为整数也可指定创建类型为浮点数张量中的每个值都称为张量的元素例如张量中有个元素除非额外指定新的张量将存储在内存中并采用基于的计算输出可以通过张量的属性来访问张量沿每个轴的长度的形状输出如果只想知道张量中元素的总数即形状的所有元素乘积可以检查它的大小因为这里在处理的是一个向量所以它的与它的相同输出要想改变一个张量的形状而不改变元素数量和元素值可以调用函数例如可以把张量从形状为的行向量转换为形状为的矩阵这个新的张量包含与转换前相同的值但是它被看成一个行列的矩阵要重点说明一下虽然张量的形状发生了改变但其元素值并没有变注意通过改变张量的形状张量的大小不会改变输出我们不需要通过手动指定每个维度来改变形状也就是说如果我们的目标形状是高度宽度那么在知道宽度后高度会被自动计算得出不必我们自己做除法在上面的例子中为了获得一个行的矩阵我们手动指定了它有行和列幸运的是我们可以通过来调用此自动计算出维度的功能即我们可以用或来取代有时我们希望使用全全其他常量或者从特定分布中随机采样的数字来初始化矩阵我们可以创建一个形状为的张量其中所有元素都设置为代码如下同样我们可以创建一个形状为的张量其中所有元素都设置为代码如下有时我们想通过从某个特定的概率分布中随机采样来得到张量中每个元素的值例如当我们构造数组来作为神经网络中的参数时我们通常会随机初始化参数的值以下代码创建一个形状为的张量其中的每个元素都从均值为标准差为的标准高斯分布正态分布中随机采样我们还可以通过提供包含数值的列表或嵌套列表来为所需张量中的每个元素赋予确定值在这里最外层的列表对应于轴内层的列表对应于轴运算符我们的兴趣不仅限于读取数据和写入数据我们想在这些数据上执行数学运算其中最简单且最有用的操作是按元素运算它们将标准标量运算符应用于数组的每个元素对于将两个数组作为输入的函数按元素运算将二元运算符应用于两个数组中的每对位置对应的元素我们可以基于任何从标量到标量的函数来创建按元素函数在数学表示法中我们将通过符号来表示一元标量运算符只接收一个输入这意味着该函数从任何实数映射到另一个实数同样我们通过符号表示二元标量运算符这意味着该函数接收两个输入并产生一个输出给定同一形状的任意两个向量和和二元运算符我们可以得到向量具体计算方法是其中和分别是向量和中的元素在这里我们通过将标量函数升级为按元素向量运算来生成向量值对于任意具有相同形状的张量常见的标准算术运算符和都可以被升级为按元素运算我们可以在同一形状的任意两个张量上调用按元素操作在下面的例子中我们使用逗号来表示一个具有个元素的元组其中每个元素都是按元素操作的结果运算符是求幂运算按元素方式可以应用更多的计算包括像求幂这样的一元运算符除了按元素计算外我们还可以执行线性代数运算包括向量点积和矩阵乘法我们也可以把多个张量连结在一起把它们端对端地叠起来形成一个更大的张量我们只需要提供张量列表并给出沿哪个轴连结下面的例子分别演示了当我们沿行轴形状的第一个元素和按列轴形状的第二个元素连结两个矩阵时会发生什么情况我们可以看到第一个输出张量的轴长度是两个输入张量轴长度的总和第二个输出张量的轴长度是两个输入张量轴长度的总和行列有时我们想通过逻辑运算符构建二元张量以为例对于每个位置如果和在该位置相等则新张量中相应项的值为这意味着逻辑语句在该位置处为真否则该位置为对张量中的所有元素进行求和会产生一个单元素张量广播机制在上面的部分中我们看到了如何在相同形状的两个张量上执行按元素操作在某些情况下即使形状不同我们仍然可以通过调用广播机制来执行按元素操作这种机制的工作方式如下通过适当复制元素来扩展一个或两个数组以便在转换之后两个张量具有相同的形状对生成的数组执行按元素操作在大多数情况下我们将沿着数组中长度为的轴进行广播如下例子由于和分别是和矩阵如果让它们相加它们的形状不匹配我们将两个矩阵广播为一个更大的矩阵如下所示矩阵将复制列矩阵将复制行然后再按元素相加索引和切片就像在任何其他数组中一样张量中的元素可以通过索引访问与任何数组一样第一个元素的索引是最后一个元素索引是可以指定范围以包含第一个元素和最后一个之前的元素如下所示我们可以用选择最后一个元素可以用选择第二个和第三个元素除读取外我们还可以通过指定索引来将元素写入矩阵如果我们想为多个元素赋值相同的值我们只需要索引所有元素然后为它们赋值例如访问第行和第行其中代表沿轴列的所有元素虽然我们讨论的是矩阵的索引但这也适用于向量和超过个维度的张量节省内存运行一些操作可能会导致为新结果分配内存例如如果我们用我们将取消引用指向的张量而是指向新分配的内存处的张量在下面的例子中我们用的函数演示了这一点它给我们提供了内存中引用对象的确切地址运行后我们会发现指向另一个位置这是因为首先计算为结果分配新的内存然后使指向内存中的这个新位置这可能是不可取的原因有两个首先我们不想总是不必要地分配内存在机器学习中我们可能有数百兆的参数并且在一秒内多次更新所有参数通常情况下我们希望原地执行这些更新如果我们不原地更新其他引用仍然会指向旧的内存位置这样我们的某些代码可能会无意中引用旧的参数幸运的是执行原地操作非常简单我们可以使用切片表示法将操作的结果分配给先前分配的数组例如为了说明这一点我们首先创建一个新的矩阵其形状与另一个相同使用来分配一个全的块如果在后续计算中没有重复使用我们也可以使用或来减少操作的内存开销转换为其他对象将深度学习框架定义的张量转换为张量很容易反之也同样容易张量和数组将共享它们的底层内存就地操作更改一个张量也会同时更改另一个张量要将大小为的张量转换为标量我们可以调用函数或的内置函数总结主要内容是以认识张量和熟悉的基本操作为主声明本系列学习笔记主要以动手学深度学习的版本为主详细见或者',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-05 22:08:04',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://avatars.githubusercontent.com/u/116327853?v=4"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">xuan</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><span> 音乐馆</span></a></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> Newest Comments</span></div><div class="aside-list"><span>loading...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>1</sup></a><a href="/tags/pytorch/" style="font-size: 1.05rem;">pytorch<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">机器学习<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">May 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/pytorch/" itemprop="url">pytorch</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/pytorch/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>pytorch</span></a></span></div></div><h1 class="post-title" itemprop="name headline">【pytorch学习】之数据操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-05T14:06:56.000Z" title="Created 2024-05-05 22:06:56">2024-05-05</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-05-05T14:08:04.102Z" title="Updated 2024-05-05 22:08:04">2024-05-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为兰州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>兰州</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/"><header><a class="post-meta-categories" href="/categories/pytorch/" itemprop="url">pytorch</a><a href="/tags/pytorch/" tabindex="-1" itemprop="url">pytorch</a><h1 id="CrawlerTitle" itemprop="name headline">【pytorch学习】之数据操作</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">rescal-xuan</span><time itemprop="dateCreated datePublished" datetime="2024-05-05T14:06:56.000Z" title="Created 2024-05-05 22:06:56">2024-05-05</time><time itemprop="dateCreated datePublished" datetime="2024-05-05T14:08:04.102Z" title="Updated 2024-05-05 22:08:04">2024-05-05</time></header><h2 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1 数据操作"></a>1 数据操作</h2><p>为了能够完成各种数据操作，我们需要某种方法来存储和操作数据。通常，我们需要做两件重要的事：（1）获取数据；<br>（2）将数据读入计算机后对其进行处理。如果没有某种方法来存储数据，那么获取数据是没有意义的。</p>
+<p>首先，我们介绍n维数组，也称为张量（tensor）。使用过Python中NumPy计算包的读者会对本部分很熟悉。<br>无论使用哪个深度学习框架，它的张量类（在MXNet中为ndarray，在PyTorch和TensorFlow中为Tensor）都与Numpy的ndarray类似。但深度学习框架又比Numpy的ndarray多一些重要功能：首先，GPU很好地支持加速计算，而NumPy仅支持CPU计算；其次，张量类支持自动微分。这些功能使得张量类更适合深度学习。</p>
+<p>注：后续涉及pytorch的代码皆是在python第三方库pytorch的支持下。pytorch的安装不做过多赘述。如需，访问百度搜索对应教程。</p>
+<h3 id="1-1-入门"><a href="#1-1-入门" class="headerlink" title="1.1 入门"></a>1.1 入门</h3><p>首先，我们导入torch。请注意，虽然它被称为PyTorch，但是代码中使用torch而不是pytorch</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br></pre></td></tr></table></figure>
+<p>张量表示一个由数值组成的数组，这个数组可能有多个维度。具有一个轴的张量对应数学上的向量（vector）；具有两个轴的张量对应数学上的矩阵（matrix）；具有两个轴以上的张量没有特殊的数学名称。<br>首先，我们可以使用 arange 创建一个行向量 x。这个行向量包含以0开始的前12个整数，它们默认创建为整数。也可指定创建类型为浮点数。张量中的每个值都称为张量的 元素（element）。例如，张量 x 中有 12 个元素。除非额外指定，新的张量将存储在内存中，并采用基于CPU的计算。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.arange(12)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#输出</span><br><span class="line">tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])</span><br></pre></td></tr></table></figure>
+<p>可以通过张量的shape属性来访问张量（沿每个轴的长度）的形状。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 输出</span><br><span class="line">torch.Size([12])</span><br></pre></td></tr></table></figure>
+<p>如果只想知道张量中元素的总数，即形状的所有元素乘积，可以检查它的大小（size）。因为这里在处理的是一个向量，所以它的shape与它的size相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.numel()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 输出</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<p>要想改变一个张量的形状而不改变元素数量和元素值，可以调用reshape函数。例如，可以把张量x从形状为（12,）的行向量转换为形状为（3,4）的矩阵。这个新的张量包含与转换前相同的值，但是它被看成一个3行4列的矩阵。要重点说明一下，虽然张量的形状发生了改变，但其元素值并没有变。注意，通过改变张量的形状，张量的大小不会改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = x.reshape(3, 4)</span><br><span class="line">X</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 输出</span><br><span class="line">tensor([[ 0,  1,  2,  3],</span><br><span class="line">        [ 4,  5,  6,  7],</span><br><span class="line">        [ 8,  9, 10, 11]])</span><br></pre></td></tr></table></figure>
+<p>我们不需要通过手动指定每个维度来改变形状。也就是说，如果我们的目标形状是（高度,宽度），那么在知道宽度后，高度会被自动计算得出，不必我们自己做除法。在上面的例子中，为了获得一个3行的矩阵，我们手动指定了它有3行和4列。幸运的是，我们可以通过-1来调用此自动计算出维度的功能。即我们可以用x.reshape(-1,4)或x.reshape(3,-1)来取代x.reshape(3,4)。<br>有时，我们希望使用全0、全1、其他常量，或者从特定分布中随机采样的数字来初始化矩阵。我们可以创建一个形状为（2,3,4）的张量，其中所有元素都设置为0。代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.zeros((2, 3, 4))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor([[[0., 0., 0., 0.],</span><br><span class="line">         [0., 0., 0., 0.],</span><br><span class="line">         [0., 0., 0., 0.]],</span><br><span class="line"></span><br><span class="line">        [[0., 0., 0., 0.],</span><br><span class="line">         [0., 0., 0., 0.],</span><br><span class="line">         [0., 0., 0., 0.]]])</span><br></pre></td></tr></table></figure>
+<p>同样，我们可以创建一个形状为(2,3,4)的张量，其中所有元素都设置为1。代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.ones((2, 3, 4))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor([[[1., 1., 1., 1.],</span><br><span class="line">         [1., 1., 1., 1.],</span><br><span class="line">         [1., 1., 1., 1.]],</span><br><span class="line"></span><br><span class="line">        [[1., 1., 1., 1.],</span><br><span class="line">         [1., 1., 1., 1.],</span><br><span class="line">         [1., 1., 1., 1.]]])</span><br></pre></td></tr></table></figure>
+<p>有时我们想通过从某个特定的概率分布中随机采样来得到张量中每个元素的值。例如，当我们构造数组来作为神经网络中的参数时，我们通常会随机初始化参数的值。以下代码创建一个形状为（3,4）的张量。其中的每个元素都从均值为0、标准差为1的标准高斯分布（正态分布）中随机采样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.randn(3, 4)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[-0.7515, -0.4732, -0.9320, -0.1099],</span><br><span class="line">        [-1.1567,  1.2664,  0.5578,  0.3683],</span><br><span class="line">        [-0.6632, -0.7685,  0.5926, -0.7287]])</span><br></pre></td></tr></table></figure>
+<p>我们还可以通过提供包含数值的Python列表（或嵌套列表），来为所需张量中的每个元素赋予确定值。在这里，最外层的列表对应于轴0，内层的列表对应于轴1。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.tensor([[2, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[2, 1, 4, 3],</span><br><span class="line">        [1, 2, 3, 4],</span><br><span class="line">        [4, 3, 2, 1]])</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-运算符"><a href="#1-2-运算符" class="headerlink" title="1.2 运算符"></a>1.2 运算符</h3><p>我们的兴趣不仅限于读取数据和写入数据。我们想在这些数据上执行数学运算，其中最简单且最有用的操作是按元素（elementwise）运算。它们将标准标量运算符应用于数组的每个元素。对于将两个数组作为输入的函数，按元素运算将二元运算符应用于两个数组中的每对位置对应的元素。我们可以基于任何从标量到标量的函数来创建按元素函数。<br>在数学表示法中，我们将通过符号$f :\mathbb{R} → \mathbb{R}$来表示一元标量运算符（只接收一个输入）。这意味着该函数从任何实数（R）映射到另一个实数。同样，我们通过符号$f : \mathbb{R}, \mathbb{R}→ \mathbb{R}$ 表示二元标量运算符，这意味着该函数接收两个输入，并产生一个输出。给定同一形状的任意两个向量u和v和二元运算符f，我们可以得到向量c &#x3D; F(u, v)。具体计算方法是$c_i ← f(u_i, v_i)$，其中$c_i$、$u_i$和$v_i$分别是向量c、u和v中的元素。在这里，我们通过将标量函数升级为按元素向量运算来生成向量值  $F: \mathbb{R}^d\rightarrow \mathbb{R}^d$ 。<br>对于任意具有相同形状的张量，常见的标准算术运算符（+、-、*、&#x2F;和**）都可以被升级为按元素运算。我们可以在同一形状的任意两个张量上调用按元素操作。在下面的例子中，我们使用逗号来表示一个具有5个元素的元组，其中每个元素都是按元素操作的结果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([1.0, 2, 4, 8])</span><br><span class="line">y = torch.tensor([2, 2, 2, 2])</span><br><span class="line">x + y, x - y, x * y, x / y, x ** y # **运算符是求幂运算</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(tensor([ 3.,  4.,  6., 10.]),</span><br><span class="line"> tensor([-1.,  0.,  2.,  6.]),</span><br><span class="line"> tensor([ 2.,  4.,  8., 16.]),</span><br><span class="line"> tensor([0.5000, 1.0000, 2.0000, 4.0000]),</span><br><span class="line"> tensor([ 1.,  4., 16., 64.]))</span><br></pre></td></tr></table></figure>
+<p>“按元素”方式可以应用更多的计算，包括像求幂这样的一元运算符。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.exp(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([2.7183e+00, 7.3891e+00, 5.4598e+01, 2.9810e+03])</span><br></pre></td></tr></table></figure>
+<p>除了按元素计算外，我们还可以执行线性代数运算，包括向量点积和矩阵乘法。<br>我们也可以把多个张量连结（concatenate）在一起，把它们端对端地叠起来形成一个更大的张量。我们只需要提供张量列表，并给出沿哪个轴连结。下面的例子分别演示了当我们沿行（轴‐0，形状的第一个元素）和按列（轴‐1，形状的第二个元素）连结两个矩阵时，会发生什么情况。我们可以看到，第一个输出张量的轴‐0长度（6）是两个输入张量轴‐0长度的总和（3 + 3）；第二个输出张量的轴‐1长度（8）是两个输入张量轴‐1长度的总和（4 + 4）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X = torch.arange(12, dtype=torch.float32).reshape((3,4))</span><br><span class="line">Y = torch.tensor([[2.0, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]])</span><br><span class="line">torch.cat((X, Y), dim=0), torch.cat((X, Y), dim=1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 行</span><br><span class="line">(tensor([[ 0.,  1.,  2.,  3.],</span><br><span class="line">         [ 4.,  5.,  6.,  7.],</span><br><span class="line">         [ 8.,  9., 10., 11.],</span><br><span class="line">         [ 2.,  1.,  4.,  3.],</span><br><span class="line">         [ 1.,  2.,  3.,  4.],</span><br><span class="line">         [ 4.,  3.,  2.,  1.]]),</span><br><span class="line"># 列</span><br><span class="line"> tensor([[ 0.,  1.,  2.,  3.,  2.,  1.,  4.,  3.],</span><br><span class="line">         [ 4.,  5.,  6.,  7.,  1.,  2.,  3.,  4.],</span><br><span class="line">         [ 8.,  9., 10., 11.,  4.,  3.,  2.,  1.]]))</span><br></pre></td></tr></table></figure>
+<p>有时，我们想通过逻辑运算符构建二元张量。以X &#x3D;&#x3D; Y为例：对于每个位置，如果X和Y在该位置相等，则新张量中相应项的值为1。这意味着逻辑语句X &#x3D;&#x3D; Y在该位置处为真，否则该位置为0。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X == Y</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[False,  True, False,  True],</span><br><span class="line">        [False, False, False, False],</span><br><span class="line">        [False, False, False, False]])</span><br></pre></td></tr></table></figure>
+<p>对张量中的所有元素进行求和，会产生一个单元素张量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.sum()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor(66.)</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-广播机制"><a href="#1-3-广播机制" class="headerlink" title="1.3 广播机制"></a>1.3 广播机制</h3><p>在上面的部分中，我们看到了如何在相同形状的两个张量上执行按元素操作。在某些情况下，即使形状不同，<br>我们仍然可以通过调用 广播机制（broadcasting mechanism）来执行按元素操作。这种机制的工作方式如下：</p>
+<ol>
+<li>通过适当复制元素来扩展一个或两个数组，以便在转换之后，两个张量具有相同的形状；</li>
+<li>对生成的数组执行按元素操作。<br>在大多数情况下，我们将沿着数组中长度为1的轴进行广播，如下例子：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = torch.arange(3).reshape((3, 1))</span><br><span class="line">b = torch.arange(2).reshape((1, 2))</span><br><span class="line">a, b</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(tensor([[0],</span><br><span class="line">         [1],</span><br><span class="line">         [2]]),</span><br><span class="line"> tensor([[0, 1]]))</span><br></pre></td></tr></table></figure>
+由于a和b分别是3 × 1和1 × 2矩阵，如果让它们相加，它们的形状不匹配。我们将两个矩阵广播为一个更大的3 × 2矩阵，如下所示：矩阵a将复制列，矩阵b将复制行，然后再按元素相加。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[0, 1],</span><br><span class="line">        [1, 2],</span><br><span class="line">        [2, 3]])</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="1-4-索引和切片"><a href="#1-4-索引和切片" class="headerlink" title="1.4 索引和切片"></a>1.4 索引和切片</h3><p>就像在任何其他Python数组中一样，张量中的元素可以通过索引访问。与任何Python数组一样：第一个元素的索引是0，最后一个元素索引是‐1；可以指定范围以包含第一个元素和最后一个之前的元素。<br>如下所示，我们可以用[-1]选择最后一个元素，可以用[1:3]选择第二个和第三个元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X[-1], X[1:3]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(tensor([ 8.,  9., 10., 11.]),</span><br><span class="line"> tensor([[ 4.,  5.,  6.,  7.],</span><br><span class="line">         [ 8.,  9., 10., 11.]]))</span><br></pre></td></tr></table></figure>
+<p>除读取外，我们还可以通过指定索引来将元素写入矩阵。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X[1, 2] = 9</span><br><span class="line">X</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[ 0.,  1.,  2.,  3.],</span><br><span class="line">        [ 4.,  5.,  9.,  7.],</span><br><span class="line">        [ 8.,  9., 10., 11.]])</span><br></pre></td></tr></table></figure>
+<p>如果我们想为多个元素赋值相同的值，我们只需要索引所有元素，然后为它们赋值。例如，[0:2, :]访问第1行和第2行，其中“:”代表沿轴1（列）的所有元素。虽然我们讨论的是矩阵的索引，但这也适用于向量和超过2个维度的张量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X[0:2, :] = 12</span><br><span class="line">X</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[12., 12., 12., 12.],</span><br><span class="line">        [12., 12., 12., 12.],</span><br><span class="line">        [ 8.,  9., 10., 11.]])</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-节省内存"><a href="#1-5-节省内存" class="headerlink" title="1.5 节省内存"></a>1.5 节省内存</h3><p>运行一些操作可能会导致为新结果分配内存。例如，如果我们用Y &#x3D; X + Y，我们将取消引用Y指向的张量，而是指向新分配的内存处的张量。在下面的例子中，我们用Python的id()函数演示了这一点，它给我们提供了内存中引用对象的确切地址。运行Y &#x3D; Y + X后，我们会发现id(Y)指向另一个位置。这是因为Python首先计算Y + X，为结果分配新的内存，然后使Y指向内存中的这个新位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">before = id(Y)</span><br><span class="line">Y = Y + X</span><br><span class="line">id(Y) == before</span><br><span class="line"># False</span><br></pre></td></tr></table></figure>
+<p>这可能是不可取的，原因有两个：</p>
+<ol>
+<li>首先，我们不想总是不必要地分配内存。在机器学习中，我们可能有数百兆的参数，并且在一秒内多次更新所有参数。通常情况下，我们希望原地执行这些更新；</li>
+<li>如果我们不原地更新，其他引用仍然会指向旧的内存位置，这样我们的某些代码可能会无意中引用旧的参数。</li>
+</ol>
+<p>幸运的是，执行原地操作非常简单。我们可以使用切片表示法将操作的结果分配给先前分配的数组，例如Y[:]&#x3D; ‘&lt;’expression’&gt;’。为了说明这一点，我们首先创建一个新的矩阵Z，其形状与另一个Y相同，使用zeros_like来分配一个全0的块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Z = torch.zeros_like(Y)</span><br><span class="line">print(&#x27;id(Z):&#x27;, id(Z))</span><br><span class="line">Z[:] = X + Y</span><br><span class="line">print(&#x27;id(Z):&#x27;, id(Z))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id(Z): 3081108382240</span><br><span class="line">id(Z): 3081108382240</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果在后续计算中没有重复使用X，我们也可以使用X[:] &#x3D; X + Y或X +&#x3D; Y来减少操作的内存开销。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">before = id(X)</span><br><span class="line">X += Y</span><br><span class="line">id(X) == before</span><br><span class="line"># True</span><br></pre></td></tr></table></figure>
+<h3 id="1-6-转换为其他Python对象"><a href="#1-6-转换为其他Python对象" class="headerlink" title="1.6 转换为其他Python对象"></a>1.6 转换为其他Python对象</h3><p>将深度学习框架定义的张量转换为NumPy张量（ndarray）很容易，反之也同样容易。torch张量和numpy数组将共享它们的底层内存，就地操作更改一个张量也会同时更改另一个张量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A = X.numpy()</span><br><span class="line">B = torch.tensor(A)</span><br><span class="line">type(A), type(B)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(numpy.ndarray, torch.Tensor)</span><br></pre></td></tr></table></figure>
+<p>要将大小为1的张量转换为Python标量，我们可以调用item函数或Python的内置函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor([3.5])</span><br><span class="line">a, a.item(), float(a), int(a)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(tensor([3.5000]), 3.5, 3.5, 3)</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>主要内容是以认识张量和熟悉pytorch的基本操作为主。</p>
+<p><strong>声明：<br>本系列学习笔记主要以《动手学深度学习》的pytorch版本为主。<br>详细见GitHub：<a target="_blank" rel="noopener" href="https://github.com/d2l-ai/d2l-zh">https://github.com/d2l-ai/d2l-zh</a><br>或者 <a target="_blank" rel="noopener" href="https://zh.d2l.ai/">https://zh.d2l.ai/</a></strong></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" title="头像" alt="头像"></a><div class="post-copyright__author_name">rescal-xuan</div><div class="post-copyright__author_desc">人间无事人</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/')">【pytorch学习】之数据操作</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=【pytorch学习】之数据操作&amp;url=https://rescal-xuan.github.io/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/pytorch/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>pytorch<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/116327853?v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/05/05/%E5%85%B3%E4%BA%8Epython%E4%B8%ADif-name-main-%E7%9A%84%E7%90%86%E8%A7%A3/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">关于python中if __name__ ==&quot;__main__&quot;:的理解</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">rescal-xuan</h1><div class="author-info__desc">人间无事人</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/rescal-xuan" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">1 数据操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%85%A5%E9%97%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 广播机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 索引和切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E8%8A%82%E7%9C%81%E5%86%85%E5%AD%98"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 节省内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%85%B6%E4%BB%96Python%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 转换为其他Python对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">1.7.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/05/%E3%80%90pytorch%E5%AD%A6%E4%B9%A0%E3%80%91%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/" title="【pytorch学习】之数据操作">【pytorch学习】之数据操作</a><time datetime="2024-05-05T14:06:56.000Z" title="Created 2024-05-05 22:06:56">2024-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/05/%E5%85%B3%E4%BA%8Epython%E4%B8%ADif-name-main-%E7%9A%84%E7%90%86%E8%A7%A3/" title="关于python中if __name__ ==&quot;__main__&quot;:的理解">关于python中if __name__ ==&quot;__main__&quot;:的理解</a><time datetime="2024-05-05T13:03:04.000Z" title="Created 2024-05-05 21:03:04">2024-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%89%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" title="机器学习（ /数据科学）的工作流程">机器学习（ /数据科学）的工作流程</a><time datetime="2024-05-05T09:24:40.000Z" title="Created 2024-05-05 17:24:40">2024-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/04/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="基于github和Hexo 搭建自己的博客">基于github和Hexo 搭建自己的博客</a><time datetime="2024-05-04T15:27:02.230Z" title="Created 2024-05-04 23:27:02">2024-05-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/04/hello-world/" title="Hello World">Hello World</a><time datetime="2024-05-04T13:51:24.658Z" title="Created 2024-05-04 21:51:24">2024-05-04</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By rescal-xuan</div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="Display Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>Display Mode</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><span> 音乐馆</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>1</sup></a><a href="/tags/pytorch/" style="font-size: 0.88rem;">pytorch<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">机器学习<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("05/01/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 rescal-xuan 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/01/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
