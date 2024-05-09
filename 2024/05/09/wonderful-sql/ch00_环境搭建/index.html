@@ -1,0 +1,751 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>sql-环境搭建 | xuan</title><meta name="author" content="rescal-xuan"><meta name="copyright" content="rescal-xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="sql-环境搭建"><meta name="application-name" content="sql-环境搭建"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta name="referrer" content="no-referrer"><meta property="og:type" content="article"><meta property="og:title" content="sql-环境搭建"><meta property="og:url" content="https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html"><meta property="og:site_name" content="xuan"><meta property="og:description" content="第0章：环境搭建本章重点: 在电脑上安装MySQL数据库系统 安装客户端并连接到本机上的MySQL数据库 使用提供的脚本创建本教程所使用的示例数据库  目录1. MySQL 8.0 的安装  1.1 windows 下 MySQL 8.0 的下载安装  1.1.1 下载 1.1.2 安装   1.2"><meta property="og:locale" content="en"><meta property="og:image" content="https://avatars.githubusercontent.com/u/116327853?v=4"><meta property="article:author" content="rescal-xuan"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://avatars.githubusercontent.com/u/116327853?v=4"><meta name="description" content="第0章：环境搭建本章重点: 在电脑上安装MySQL数据库系统 安装客户端并连接到本机上的MySQL数据库 使用提供的脚本创建本教程所使用的示例数据库  目录1. MySQL 8.0 的安装  1.1 windows 下 MySQL 8.0 的下载安装  1.1.1 下载 1.1.2 安装   1.2"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"xuan","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"Author: rescal-xuan","link":"Link: ","source":"Source: xuan","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.","copySuccess":"Copy success, copy and reprint please mark the address of this article"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'xuan',
+  title: 'sql-环境搭建',
+  postAI: '',
+  pageFillDescription: '第0章：环境搭建, 本章重点, 目录, 1. MySQL 8.0 的安装, 1.1 windows 下 MySQL 8.0 的下载安装, 1.1.1 下载, 1.1.2 安装, 1.2 macOS 下 MySQL 8.0 的下载安装, 1.3 Linux 下 MySQL 8.0 的下载安装, 1.3.1 安装步骤, 1.3.2 MySQL 数据库设置, 1.3.3 设置远程连接, 2. 连接 MySQL 并执行 SQL 查询, 2.0 使用命令行方式连接MySQL服务（推荐指数 star star star）, 2.1 [选学]使用 MySQL Workbench 连接 MySQL（极不推荐 exclamationexclamationexclamation）, 2.2 [选学]使用 HeidiSQL 连接 MySQL（推荐指数 star star star）, 2.3 [选学]使用 DBeaver 连接 MySQL（推荐指数 star star star）, 2.4 [选学]使用 Navicat 连接 MySQL（推荐指数 star star star star star）, 2.5 [选学]使用 SQLyog 连接 MySQL（推荐指数 star star star star）, 2.6 [选学]DataGrip的安装和连接MySQL（推荐指数 star star star star）, 3. 创建学习用的数据库第章环境搭建本章重点在电脑上安装数据库系统安装客户端并连接到本机上的数据库使用提供的脚本创建本教程所使用的示例数据库目录的安装下的下载安装下载安装下的下载安装下载下的下载安装安装步骤数据库设置设置远程连接连接并执行查询使用命令行方式连接服务推荐指数选学使用连接推荐指数选学使用连接推荐指数选学使用连接推荐指数选学使用连接推荐指数选学使用连接推荐指数选学的安装和连接推荐指数创建学习用的数据库的安装考虑到大家所使用的操作系统的不同本教程分别提供了和平台上的的安装流程你可根据自己所使用电脑的操作系统选择以下三节中的一节进行学习和安装下的下载安装首先以最常见的为例介绍的下载安装下载针对个人用户和商业用户提供了不同的版本社区版是供个人用户免费下载的开源数据库本教程将以社区版为例进行安装连接和查询的讲解官网上的社区版软件的下载地址选择可以下载操作系统下的最新版安装文件如果需要安装历史版本可以选择最后的后选择然后在新页面里选择所需历史版本的社区版如果想下载本教程所使用的也可以在百度盘下载下载链接提取码备用下载链接提取码我们接下来以文档写作时的最新版为例进行下载安装的介绍进入到页面后选择下载下方的完整安装程序在下载页面选择下方的不注册仅下载完成下载后得到一个后缀为的安装文件安装找到刚才下载好的文件双击开始安装强烈建议初学者采用完全安装模式进行安装缺点是不能修改安装目录如果想修改安装路径需要选择安装模式包括安装路径和数据存放路径注意要安装组件至右侧再进行点选之后点击按钮进行修改安装过程中部分模块会依赖其他组件每台电脑上列出的依赖项很可能会有不同如果你的电脑之前没有安装过这些组件则需要额外进行安装此处点击按钮即可在这些所依赖的组件的安装过程中只需要一路选择同意并逐个安装就可以了安装好个组件后点击关闭按钮动开始安装下个组件这一步根据操作系统版本可能会略有不同正常情况下会将所有组件安装成功但可能会有个别组件未安装成功个别组件没有呈现绿是因为你的电脑中缺少某个程序例如如果你的电脑没有安装环境则该项目就不会呈现绿色待下边剩下个按钮且上部分组件为绿色时即可点击如果有个别组件未安装成功此时可以先选择忽略个别组件的安装点击开始安装服务器软件连接和查询软件及其他相关软件等内容稍等片刻安装完成后点击下图这一步是选是否以集群方式安装我们选择默认的第一个然后点击此处上边的各种相关配置保持默认即可勾选最下边的框然后点击下图是密码强度的设置第种模式为强密码校验模式推荐使最新的数据库和客户端更换了加密插件这可能导致第三客户端具法连接数据库第种加密式沿袭了的加密式对第三具连接不敏感我们仅为了学习查询并不需要很高的安全性因此此处请务必选择第二种式非常重要在这一步设置的账户密码由于上一步选择了第二个选项因此这里可以设置为较简单容易记忆的而密码例如建议设置较简单的密码并将密码记录下来以防遗忘忘记密码是件麻烦事此处保持默认即可如果右侧有警告图标显示表示名称重复动更换个名称即可然后点击这里使用默认设置即可我们的学习中暂时用不到这些设置直接点击下图是设置是否大小写敏感的这一步非常重要由于系统是大小写不敏感的请大家务必使用第一个选项点击完成安装后在下图中点击回到安装的主进程在主进程界面点击这一步无需任何选择直接点击进入到界面后输刚才设置的密码点击进校验校验通过后会显示连接成功然后点击点击应用设置上述步骤完成后点击回到安装主进程后点击点击完成安装现在你的电脑上就已经安装了的服务器软件用于连接服务器进行查询的以及其他程序语言连接的驱动此外还安装了几个示例数据库但本教程将采用基础教程一书中的示例数据库该数据库的创建和数据导入将在后续进行介绍下的下载安装官网上社区版软件的下载地址选择可以进一步选择下载操作系统下的最新版如果需要安装历史版本可以选择最后的后选择然后在新页面里选择所需历史版本的社区版然后选择下载安装文件点击下方的直接下载下载的文件为如果官网下载速度很慢或者希望下载本教程所使用的也可以在百度盘下载下载链接提取码备用下载链接提取码我们接下来以文档写作时的最新版为为例进行下载安装讲解在上直接双击文件就可以开始安装了我们只选择了安装因此安装过程较为简单注意在配置服务器这一步最好选择下边的选项这样就可以使用简单密码在接下来的步骤需要设置密码如果上一步选择了第二个选项这里就可以使用比较简单的密码请务必牢记自己设置的密码注意如果在前一步选择使用了强密码安装过程中会自动生成一个随机密码类似于下图这种形式此时请截图保留该密码并在安装完成后使用该密码登录并重新设置密码由于选择使用了强密码此时设置密码必须使用大小写字母数字和特殊符号的组合完成安装后打开电脑的系统偏好设置会出现的服务标识正确安装后打开上述截图中的之后会看到如下界面在这里可以启动和停止服务以及配置是否随电脑启动而自动启动安装之后如果我们直接在终端输入会提示找不到命令需要配置一下环境变量才可以输入以下命令再通过终端输入登录命令后就可以看到的交互式界面了然后输入以下内容将自己电脑的路径配置到环境变量中如果在安装过程中你没修改过安装路径那么你的电脑上的路径应该和下述代码中所使用的路径是一致的运行上述配置后通过输入下面这条命令使修改生效接下来在你的终端中输入命令来登录到然后需要输入你刚才设置的密码如果你选择了强密码则这里需要输入你查到的随机密码如果看到以下界面则表示你的电脑上已经正确安装已经正确配置了的环境变量并且已经启动服务器程序如果并没有出现下属界面请按照上述三个顺序逐个检查使用终端或者下的命令行与进行交互是非常便捷和高效的但是对于平时不怎么使用终端的普通人来说使用终端在做数据查询时在查询结果的显示和导出方面有诸多不便特别是当我们对查询不熟练的时候这种方式很不利于我们进行查询语句的调试因此本教程将选择查询界面更加友好的客户端工具来连接数据库这种通过终端连接的方式暂时不再使用接下来请安装跳转到节安装并连接本机的服务注上的查询工具也有很多其他的选择比如开源免费需付费购买提供天的免费试用期学生使用学校的邮箱可以申请到一年的免费使用权等可参考知乎上的问题平台上有哪些好的数据库开发工具下的下载安装本节我们以版本的操作系统为例介绍下载安装的过程示例操作系统的版本在系统中默认是安装了的但是我们需要的是我们可以直接下载安装安装可以覆盖关于数据库管理系统是的一个分支主要由开源社区在维护采用授权许可开发这个分支的原因之一是甲骨文公司收购了后有将闭源的潜在风险因此社区采用分支的方式来避开这个风险的目的是完全兼容包括和命令行使之能轻松成为的代替品但在两个分支经过了几年的各自迭代之后在一些方面二者出现了一些差异安装步骤首先从官网下载的根据和的版本选择下载相对应的文件本文选择红色方框的文件是一个基于的软件包管理器它可以从指定的服务器自动下载包并且安装可以自动处理依赖性关系并且一次安装所有依赖的软体包无须繁琐地一次次下载安装下载命令用命令安装下载好的包安装服务器这一步由于要下载安装文件可能会花一些时间安装完成后就会覆盖掉之前的当出现如下图所示的内容则代表就安装完成了数据库设置启动查看运行状态后面的状态代表启功服务后为停止后为运行状态如图重新启动和停止的命令如下重新启动停止此时已经开始正常运行不过要想进入还得先找出此时用户的密码通过如下命令可以在日志文件中找出密码为了加强安全性为用户随机生成了一个密码在中关于的位置如果安装的是包则默认是只有启动过一次才可以查看临时密码使用命令查看初始的随机密码登录用户然后输入上述查到的初始密码登录后还不能做任何查询或建库操作因为默认必须修改初始的随机密码之后才能操作数据库否则会报错修改密码为注意结尾要有分号表示语句的结束这里有个问题新密码设置的时候如果设置的过于简单会报错原因是因为有密码设置的规范具体是与的值有关完整的初始密码规则可以通过如下命令查看密码的长度是由决定的而的计算公式是如果想要设置简单的密码必须要修改约束修改两个全局参数代表密码策略默认是符合长度且必须含有数字小写或大写字母特殊字符设置为判断密码的标准就基于密码的长度了一定要先修改两个参数再修改密码代表密码长度最小值为修改完如图此时密码就可以设置的很简单例如之类的到此数据库的密码设置就完成了但此时还有一个问题就是因为安装了以后每次操作都会自动更新如不需要更新可以把这个卸载掉在中的主要配置所在的目录这是的主配置文件数据库的数据库文件存放位置数据库的日志输出存放位置一些可能会用到的设置设置表名为大小写不敏感用帐号登录后使用命令停止数据库服务修改在下面添加这里的参数表示区分大小写表示不区分大小写做好数据备份然后使用下述命令删除数据库数据删除后数据库将恢复到刚安装的状态重启数据库此时数据库恢复到初始状态重复安装时的操作查找临时密码修改密码密码位以上大小写符号数据如想要使用简单密码需按照上述安装流程中的步骤进行操作刷新的系统权限相关表此时的表名的大小写不再敏感设置远程连接如果你想要在另外一台电脑上连接上安装的那么还需要一些其他的设置首先需要将设置为可以远程连接设置库的表中帐号的为表示可以从任意连接为了安全性也可以设置为你自己所用于连接上的电脑所使用的其次内新增加函数通过更改这个函数密码来进行远程连接例如更改用户的密码接下来为的防火墙开启所使用的端口并重新加载防火墙完成上述设置后重新启动服务重新启动最后在另外一台电脑上使用下一节介绍的各类客户端工具进行连接测试连接并执行查询在安装成功后我们可以通过开始菜单控制面板管理工具服务中查找并开启或关闭服务开启服务后将以后台服务的形式在你的电脑上运行如果想要进行查询还需要使用命令行工具或者其他更加友好的应用程序连接到服务使用命令行方式连接服务推荐指数连接数据库的最基本的式是使用命令以为例在完成服务的安装后在开始菜单找到刚才安装好的命令具单击即可打开输你在安装过程中为用户设置的密码即可连接到数据库看到如下界表示数据库安装成功并且你已经使用命令行连接到了数据库图中红框表示数据库版本在最后的后即可输入命令执行各种数据库操作但是使用命令行在做数据查询时在查询结果的显示和导出方面有诸多不便特别是当我们对查询不熟练的时候这种方式不利于我们进行查询语句的修改和调试因此本教程将选择查询界面更加友好的客户端工具使用来连接数据库这种通过命令行连接的方式暂时不再使用常见的可用于连接数据库并进行查询等操作的管理工具包括开源软件和以及商业软件有免费版和天试用版有免费的社区版和等等选学使用连接极不推荐是官方的客户端工具支持和对于用户我们在安装的时候由于选择的是完整安装模式因此也同时安装了这个工具对于的用户可以在选择版本进行下载安装是一款功能强大的数据库管理工具它既可以用于设计数据库也可以用于连接数据库进行查询我们这个课程主要使用它的连接数据库进行查询的功能虽然是官方提供的客户端工具但是使用过程中很容易出现莫名其妙的报错建议选取其他类型的客户端如果你使用的是操作系统打开后会有如下提示这是说不再维护系统下的但并不影响使用打开后使用快捷键或者点击菜单栏里的进入数据库连接的设置界面如下图所示然后如下图红框中设置连接本机的输入密码并点击如果弹出如下对话框表示服务器设置为对于表名和列名的大小写敏感但由于系统默认的是大小写不敏感因此当表名或列名有大写字母时即使写的语句中正确地使用了大写的表名程序也无法正确执行这时候建议大家在开始学习查询之前把表名逐一更改为小写打开后的界在中间的编辑器里就可以写查询了下一次打开软件时可以直接点击保存的数据库连接不需要先进行设置后再连接了选学使用连接推荐指数是一款功能非常强大的开源免费的数据库客户端软件采用语言开发支持操作系统支持和微软的官网下载地址下载版本后解压缩就可以使用点击文件夹中的在弹出对话框里点击新建然后填写密码再点击打开即可连接到本机上安装的数据库软件的主界面如图所示选学使用连接推荐指数是一款基于开发的免费和开源的通用数据库管理工具和客户端提供和全平台支持能够连接包括等主流数据库软件在内的绝大多数兼容驱动的数据库提供一个图形界面用来查看数据库结构执行查询和脚本浏览和导出数据处理数据修改数据库结构等等由于是开源软件大家可直接从官网下载安装完成后打开软件点击文件菜单下的新建连接图标并选择然后点击下一步在下方弹出的设置窗口中服务器地址使用默认的数据库暂时留空然后在下方填入自己设置的密码最后点击测试连接本次学习主要使用一个新建的数据库但因为相关数据我们还没导入建库建表及数据导入的脚本在本章第三节因此数据库这里先留空等下一步导入数据后再进一步修改连接参数首次连接时会提示需要下载驱动程序完成驱动程序的下载后如果弹出如下对话框则表示连接成功点击确定并保存连接后以后就可以直接双击这个连接进行数据库连接了如果需要保存多个数据库连接可以使用快捷键或选中当前连接并点击鼠标右键后选择重命名为当前连接起一个便于识别的名称接下来就可以开始写你的第一个语句了如上图这样选中刚刚保存的连接鼠标右键选第一个按钮编辑器或者直接使用快捷键就会打开一个编辑器然后就可以在这里编写语句了例如我们可以使用如下语句完成本教程所使用的示例数据库的创建注意在使用创建数据库的语句时是无需在红框中选中数据库的但其他所有的创建表导入数据和最常用的查询语句都需要选中相应的数据库在执行上述语句后我们可以回到连接设置里把默认数据库连接改为刚才创建的选学使用连接推荐指数包含了一系列的功能强大的数据库管理软件主要有完整功能版的以及专门用于数据库管理的用于数据库管理的用于数据库管理的用于数据库管理的等等但它提供的免费的版本已足够本次课程使用注官网已经不再提供的下载了但可以通过搜索引擎找到的历史版本的下载链接此外也可以从官网下载或的天试用版链接提取码选学使用连接推荐指数是业界著名的公司出品的一款简洁高效功能强大的图形化数据库管理工具的企业版是收费软件但该软件也提供了社区版供大家使用虽然在功能上有些限制但对于本课程已经足够用了社区版的下载地址为选学的安装和连接推荐指数是大名鼎鼎的出品的数据库工具支持和操作系统创建学习用的数据库根据基础教程提供的版本的数据库数据表的创建以及数据导入的代码经过一些修改创建了一份脚本运行该脚本可以一步到位地创建本文档所需的数据库及其中所有的表并插入本教程所需要的所有数据下述脚本可用于创建本教程所使用的示例数据库以及数据库中表的创建和数据的插入详见不同客户端的脚本导入方法有所不同导入文件参考地址导入后看不到数据库表的话请尝试刷新数据库一般刷新后就可以看到导入的表了脚本的一些要点存储引擎使用字符集改为以更好地支持中文所有表名所使用的英文字母都改为小写后续章节中查询中的表名也需要相应修改为小写所有列名所使用的英文字母确认为小写后续章节中查询中的列名也需要相应修改为小写已测试通过在使用已测试通过使用执行脚本在使用已测试通过在使用已测试通过在使用已测试通过在使用命令行下测试未通过插入中文数据时提示建议使用客户端进行数据库的创建和数据导入',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-09 13:47:19',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://avatars.githubusercontent.com/u/116327853?v=4"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">xuan</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><span> 音乐馆</span></a></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> Newest Comments</span></div><div class="aside-list"><span>loading...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>1</sup></a><a href="/tags/python%E7%88%AC%E8%99%AB/" style="font-size: 1.05rem;">python爬虫<sup>1</sup></a><a href="/tags/pytorch/" style="font-size: 1.05rem;">pytorch<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">机器学习<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">May 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/sql/" itemprop="url">sql</a></span><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">sql-环境搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-09T13:36:24.613Z" title="Created 2024-05-09 13:36:24">2024-05-09</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-05-09T13:47:19.118Z" title="Updated 2024-05-09 13:47:19">2024-05-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为兰州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>兰州</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><header><a class="post-meta-categories" href="/categories/sql/" itemprop="url">sql</a><h1 id="CrawlerTitle" itemprop="name headline">sql-环境搭建</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">rescal-xuan</span><time itemprop="dateCreated datePublished" datetime="2024-05-09T13:36:24.613Z" title="Created 2024-05-09 13:36:24">2024-05-09</time><time itemprop="dateCreated datePublished" datetime="2024-05-09T13:47:19.118Z" title="Updated 2024-05-09 13:47:19">2024-05-09</time></header><h1 id="第0章：环境搭建"><a href="#第0章：环境搭建" class="headerlink" title="第0章：环境搭建"></a>第0章：环境搭建</h1><h3 id="本章重点"><a href="#本章重点" class="headerlink" title="本章重点:"></a>本章重点:</h3><ul>
+<li>在电脑上安装MySQL数据库系统</li>
+<li>安装客户端并连接到本机上的MySQL数据库</li>
+<li>使用提供的脚本创建本教程所使用的示例数据库</li>
+</ul>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#1-mysql-80-%E7%9A%84%E5%AE%89%E8%A3%85">1. MySQL 8.0 的安装</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#11-windows-%E4%B8%8B-mysql-80-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">1.1 windows 下 MySQL 8.0 的下载安装</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#111-%E4%B8%8B%E8%BD%BD">1.1.1 下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#112-%E5%AE%89%E8%A3%85">1.1.2 安装</a></li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#12-macos-%E4%B8%8B-mysql-80-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">1.2 macOS 下 MySQL 8.0 的下载安装</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#111-%E4%B8%8B%E8%BD%BD">1.1.1 下载</a></li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#13-linux-%E4%B8%8B-mysql-80-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">1.3 Linux 下 MySQL 8.0 的下载安装</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#131-%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4">1.3.1 安装步骤</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#132-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AE">1.3.2 MySQL 数据库设置</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#133-%E8%AE%BE%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5">1.3.3 设置远程连接</a></li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#2-%E8%BF%9E%E6%8E%A5-mysql-%E5%B9%B6%E6%89%A7%E8%A1%8C-sql-%E6%9F%A5%E8%AF%A2">2. 连接 MySQL 并执行 SQL 查询</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#20-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F%E8%BF%9E%E6%8E%A5mysql%E6%9C%8D%E5%8A%A1%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star">2.0 使用命令行方式连接MySQL服务（推荐指数 ⭐ ⭐ ⭐）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#21-%E9%80%89%E5%AD%A6%E4%BD%BF%E7%94%A8-mysql-workbench-%E8%BF%9E%E6%8E%A5-mysql%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star">2.1 [选学]使用 MySQL Workbench 连接 MySQL（推荐指数 ⭐）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#22-%E9%80%89%E5%AD%A6%E4%BD%BF%E7%94%A8-heidisql-%E8%BF%9E%E6%8E%A5-mysql%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star">2.2 [选学]使用 HeidiSQL 连接 MySQL（推荐指数 ⭐ ⭐ ⭐）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#23-%E9%80%89%E5%AD%A6%E4%BD%BF%E7%94%A8-dbeaver-%E8%BF%9E%E6%8E%A5-mysql%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star">2.3 [选学]使用 DBeaver 连接 MySQL（推荐指数 ⭐ ⭐ ⭐）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#24-%E9%80%89%E5%AD%A6%E4%BD%BF%E7%94%A8-navicat-%E8%BF%9E%E6%8E%A5-mysql%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-star-star">2.4 [选学]使用 Navicat 连接 MySQL（推荐指数 ⭐ ⭐ ⭐ ⭐ ⭐）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#25-%E9%80%89%E5%AD%A6%E4%BD%BF%E7%94%A8-sqlyog-%E8%BF%9E%E6%8E%A5-mysql%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-star">2.5 [选学]使用 SQLyog 连接 MySQL（推荐指数 ⭐ ⭐ ⭐ ⭐）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#26-%E9%80%89%E5%AD%A6datagrip%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%9E%E6%8E%A5mysql%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-star">2.6 [选学]DataGrip的安装和连接MySQL（推荐指数 ⭐ ⭐ ⭐ ⭐）</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/ch00:%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md#3-%E5%88%9B%E5%BB%BA%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93">3. 创建学习用的数据库</a></p>
+<h2 id="1-MySQL-8-0-的安装"><a href="#1-MySQL-8-0-的安装" class="headerlink" title="1. MySQL 8.0 的安装"></a>1. MySQL 8.0 的安装</h2><p>考虑到大家所使用的操作系统的不同,  本教程分别提供了 windows 10, macOS和centos平台上的MySQL 8.0 的安装流程, 你可根据自己所使用电脑的操作系统选择以下三节中的一节进行学习和安装。</p>
+<h3 id="1-1-windows-下-MySQL-8-0-的下载安装"><a href="#1-1-windows-下-MySQL-8-0-的下载安装" class="headerlink" title="1.1 windows 下 MySQL 8.0 的下载安装"></a>1.1 windows 下 MySQL 8.0 的下载安装</h3><p>首先以最常见的 win10 为例, 介绍 MySQL8.0 的下载安装。</p>
+<h4 id="1-1-1-下载"><a href="#1-1-1-下载" class="headerlink" title="1.1.1 下载"></a>1.1.1 下载</h4><p>MySQL 针对个人用户和商业用户提供了不同的版本, MySQL 社区版(MySQL Community Edition) 是供个人用户免费下载的开源数据库, 本教程将以MySQL 社区版为例进行安装连接和SQL查询的讲解。</p>
+<p>MySQL 官网上的社区版软件的下载地址<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/">https://dev.mysql.com/downloads/</a>, 选择<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/">MySQL Installer for Windows</a>可以下载 windows 操作系统下的最新版 MySQL安装文件. 如果需要安装历史版本, 可以选择最后的<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/">Download Archives</a>后选择<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/installer/">MySQL Installer</a>,然后在新页面里选择所需历史版本的社区版。</p>
+<p>如果想下载本教程所使用的 MySQL 8.0.21.0, 也可以在百度⽹盘下载, </p>
+<p>下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1SOtMoVqqRXwa2qD0siHcIg">https://pan.baidu.com/s/1SOtMoVqqRXwa2qD0siHcIg</a>提取码：80lf</p>
+<p>备用下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1zK2vj50DvuAee-EqAcl-0A">https://pan.baidu.com/s/1zK2vj50DvuAee-EqAcl-0A</a>提取码：80lf</p>
+<p>我们接下来以文档写作时的最新版 MySQL 8.0.21 为例, 进行下载安装的介绍。</p>
+<p>进入到<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/">MySQL Installer for Windows</a>页面后, 选择下载下方的完整安装程序。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0001.png" alt="图片"></p>
+<p>在下载页面选择下方的不注册,仅下载。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0002.png" alt="图片"></p>
+<p>完成下载后, 得到一个后缀为msi的安装文件。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0003.png" alt="图片"></p>
+<h4 id="1-1-2-安装"><a href="#1-1-2-安装" class="headerlink" title="1.1.2 安装"></a>1.1.2 安装</h4><p>找到刚才下载好的msi文件, 双击开始安装. :exclamation::exclamation::exclamation:<strong>强烈建议初学者采用完全安装模式( Full )进行安装</strong>（缺点是不能修改安装目录）:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0004.png" alt="图片"></p>
+<p>如果想修改安装路径，需要选择 <code>custom</code> 安装模式。包括安装路径和数据存放路径, 注意要安装组件至右侧，再进行点选, 之后点击 <code>Advanced Options</code> 按钮进行修改。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0005-mysql-install-custom.png" alt="图片"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0005-mysql-install-custom2.png" alt="图片"></p>
+<p>安装过程中, 部分模块会依赖其他组件(每台电脑上列出的依赖项很可能会有不同)。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0006.png" alt="图片"></p>
+<p>如果你的电脑之前没有安装过这些组件, 则需要额外进行安装, 此处点击 Execute 按钮即可:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0007.png" alt="图片"></p>
+<p>在这些所依赖的组件的安装过程中, 只需要一路选择”同意”并逐个安装就可以了:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0008.png" alt="图片"></p>
+<p>安装好⼀个组件后, 点击关闭按钮, ⾃动开始安装下⼀个组件(这一步根据操作系统版本可能会略有不同)</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0009.png" alt="图片"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0010.png" alt="图片"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0011.png" alt="图片"></p>
+<p>正常情况下,会将所有组件安装成功.但可能会有个别组件未安装成功. 个别组件没有呈现绿⾊是因为你的电脑中缺少某个程序, 例如, 如果你的电脑没有安装 Python 环境, 则该项目就不会呈现绿色. 待下边剩下 3 个按钮且上⽅⼤部分组件为绿色时, 即可点击 Next:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0012.png" alt="图片"></p>
+<p>如果有个别组件未安装成功, 此时可以先选择 Yes, 忽略个别组件的安装。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0013.png" alt="图片"></p>
+<p>点击 Excute, 开始安装服务器软件MySQL Server, 连接和查询软件MySQL Workbench及其他相关软件等内容。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0014.png" alt="图片"></p>
+<p>稍等片刻,  安装完成后, 点击 Next</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0015.png" alt="图片"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0016.png" alt="图片"></p>
+<p>下图这一步是选是否以集群方式安装 MySQL, 我们选择默认的第一个, 然后点击 Next:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0017.png" alt="图片"></p>
+<p>此处上边的各种相关配置保持默认即可, <strong>勾选最下边的”Show Advanced and Logging Options”框,</strong> 然后点击 Next:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0018.png" alt="图片"></p>
+<p>下图是密码强度的设置, 第⼀种模式为强密码校验模式, MySQL 8.0 推荐使⽤最新的数据库和客户端, 更换了加密插件, 这可能导致第三⽅客户端⼯具⽆法连接数据库。</p>
+<p>第⼆种加密⽅式沿袭了 MySQL 5.x 的加密⽅式, 对第三⽅⼯具连接不敏感, 我们仅为了学习 SQL 查询, 并不需要很高的安全性, 因此此处请务必选择第二种⽅式(非常重要):</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0019.png" alt="图片"></p>
+<p>在这一步设置 MySQL 的 root 账户密码, 由于上一步选择了第二个选项, 因此这里可以设置为较简单容易记忆的而密码, 例如”123456”. 建议设置⽐较简单的密码, 并将密码记录下来以防遗忘, 忘记密码是⼀件麻烦事。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0020.png" alt="图片"></p>
+<p>此处保持默认即可, 如果 windows service name 右侧有⻩⾊警告图标显示, 表示名称重复, ⼿动更换⼀个名称即可, 然后点击 Next:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0021.png" alt="图片"></p>
+<p>Logging Options 这里使用默认设置即可, 我们的学习中暂时用不到这些设置, 直接点击 Next:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0022.png" alt="图片"></p>
+<p>下图是设置是否大小写敏感的. 这一步非常重要,<strong>由于windows系统是大小写不敏感的, 请大家务必使用第一个选项Lower Case</strong>。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0023.png" alt="图片"></p>
+<p>点击 Execute</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0024.png" alt="图片"></p>
+<p>完成安装后, 在下图中点击 Finish 回到安装的主进程:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0025.png" alt="图片"></p>
+<p>在主进程界面点击 Next</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0026.png" alt="图片"></p>
+<p>这一步无需任何选择, 直接点击 Finish</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0027.png" alt="图片"></p>
+<p>进入到 Connect To Server 界面后, 输⼊刚才设置的密码, 点击 check 进⾏校验, 校验通过后 Status 会显示连接成功, 然后点击 Next</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0028.png" alt="图片"></p>
+<p>点击 Excute 应用设置:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0029.png" alt="图片"></p>
+<p>上述步骤完成后, 点击 Finish</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0030.png" alt="图片"></p>
+<p>回到安装主进程后, 点击 Next</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0031.png" alt="图片"></p>
+<p>点击 Finish,完成安装.</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0032.png" alt="图片"></p>
+<p>现在, 你的电脑上就已经安装了MySQL的服务器软件、用于连接服务器进行查询的MySQL Workbench, 以及其他程序语言连接MySQL的驱动, 此外还安装了几个示例数据库, 但本教程将采用《SQL基础教程》一书中的示例数据库, 该数据库的创建和数据导入将在后续进行介绍。</p>
+<h3 id="1-2-macOS-下-MySQL-8-0-的下载安装"><a href="#1-2-macOS-下-MySQL-8-0-的下载安装" class="headerlink" title="1.2 macOS 下 MySQL 8.0 的下载安装"></a>1.2 macOS 下 MySQL 8.0 的下载安装</h3><p>MySQL 官网上社区版软件的下载地址<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/">https://dev.mysql.com/downloads/</a>, 选择<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">MySQL Community Server</a>可以进一步选择下载 macOS操作系统下的最新版 MySQL. 如果需要安装历史版本, 可以选择最后的<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/">Download Archives</a>后选择<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/installer/">MySQL Installer</a>,然后在新页面里选择所需历史版本的社区版。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0033.png" alt="图片"></p>
+<p>然后选择下载dmg安装文件。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0034.png" alt="图片"></p>
+<p>点击下方的直接下载。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0035.png" alt="图片"></p>
+<p>下载的文件为:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0036.png" alt="图片"></p>
+<p>如果官网下载速度很慢, 或者希望下载本教程所使用的 MySQL 8.0.21.0, 也可以在百度⽹盘下载, </p>
+<p>下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ka22UtzqFdOaIosrpKz92w">https://pan.baidu.com/s/1ka22UtzqFdOaIosrpKz92w</a> 提取码: 8xh4</p>
+<p>备用下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1XeA_8PQvvRePEdZ5ayOT-Q">https://pan.baidu.com/s/1XeA_8PQvvRePEdZ5ayOT-Q</a> 提取码：8xh4</p>
+<p>我们接下来以文档写作时的最新版为 8.0.21 为例, 进行下载安装讲解。</p>
+<p>在mac上直接双击dmg文件就可以开始安装了. 我们只选择了安装MySQL Community Server, 因此安装过程较为简单。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0037.png" alt="图片"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0038.png" alt="图片"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0039.png" alt="图片"></p>
+<p>注意, 在配置MySQL服务器这一步, 最好选择下边的选项, 这样就可以使用简单密码。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0040.png" alt="图片"></p>
+<p>在 Configuration 接下来的步骤需要设置密码, 如果上一步选择了第二个选项, 这里就可以使用比较简单的密码. 请务必牢记自己设置的密码。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0041.png" alt="图片"></p>
+<p>注意, 如果在前一步选择使用了MySQL8.0强密码, MySQL安装过程中会自动生成一个随机密码, 类似于下图这种形式:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0042.png" alt="图片"></p>
+<p>此时请截图保留该密码, 并在安装完成后, 使用该密码登录并重新设置密码. 由于选择使用了强密码, 此时设置密码必须使用大小写字母数字和特殊符号的组合。</p>
+<p>完成安装后, 打开电脑的系统偏好设置, 会出现MySQL的服务标识。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0043.png" alt="图片"></p>
+<p>正确安装MySQL后, 打开上述截图中的MySQL之后会看到如下界面, 在这里可以启动和停止MySQL服务, 以及配置MySQL是否随电脑启动而自动启动。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0044.png" alt="图片"></p>
+<p>安装之后, 如果我们直接在终端输入mysql, 会提示找不到命令, 需要配置一下环境变量才可以, 输入以下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=&quot;$PATH&quot;:/usr/local/mysql/bin</span><br></pre></td></tr></table></figure>
+<p>再通过终端输入mysql登录命令后, 就可以看到mysql的交互式界面了。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0045.png" alt="图片"></p>
+<p>然后输入以下内容, 将自己电脑的mysql路径配置到环境变量中, 如果在安装过程中你没修改过安装路径, 那么你的电脑上MySQL的路径应该和下述代码中所使用的路径是一致的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/mysql/bin</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0046.png" alt="图片"></p>
+<p>运行上述配置后, 通过输入下面这条命令使修改生效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>接下来, 在你的终端中输入命令来登录到MySQL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>然后需要输入你刚才设置的密码(如果你选择了强密码, 则这里需要输入你查到的随机密码), 如果看到以下界面, 则表示你的电脑上: 1.MySQL8.0已经正确安装, 2.已经正确配置了MySQL8.0的环境变量,并且3.已经启动MySQL服务器程序. 如果并没有出现下属界面, 请按照上述三个顺序逐个检查。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0047.png" alt="图片"></p>
+<p>使用终端(或者windows下的命令行)与MySQL进行交互是非常便捷和高效的, 但是对于平时不怎么使用终端的普通人来说, 使用终端在做数据查询时, 在查询结果的显示和导出方面有诸多不便, 特别是当我们对 SQL 查询不熟练的时候, 这种方式很不利于我们进行查询语句的调试. 因此本教程将选择查询界面更加友好的客户端工具来连接数据库, 这种通过终端连接MySQL的方式暂时不再使用。</p>
+<p>接下来请安装跳转到2.1节安装MySQL Workbench并连接本机的MySQL服务。</p>
+<blockquote>
+<p>注:<br>macOS上的SQL查询工具也有很多其他的选择, 比如DBeaver(开源, 免费), DataGrip(需付费购买,提供30天的免费试用期, 学生使用学校的邮箱可以申请到一年的免费使用权)等,可参考知乎上的问题 :<br>Mac平台上有哪些好的SQL 数据库开发工具？<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20498949">https://www.zhihu.com/question/20498949</a></p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0048.png" alt="图片"></p>
+<h3 id="1-3-Linux-下-MySQL-8-0-的下载安装"><a href="#1-3-Linux-下-MySQL-8-0-的下载安装" class="headerlink" title="1.3 Linux 下 MySQL 8.0 的下载安装"></a>1.3 Linux 下 MySQL 8.0 的下载安装</h3><p>本节我们以 centos 版本的 Linux 操作系统为例, 介绍下载安装 MySQL8.0.21 的过程. 示例操作系统的linux 版本：centos-release-7-7.1908.0.el7.centos.x86_64</p>
+<p>在 CentOS 系统中默认是安装了 MariaDB 的, 但是我们需要的是 MySQL, 我们可以直接下载安装 MySQL, 安装 MySQL 可以覆盖 MariaDB。</p>
+<blockquote>
+<p>关于 MariaDB:<br>MariaDB 数据库管理系统是 MySQL 的一个分支, 主要由开源社区在维护, 采用 GPL 授权许可. 开发这个分支的原因之一是：甲骨文公司收购了 MySQL 后, 有将 MySQL 闭源的潜在风险, 因此社区采用分支的方式来避开这个风险. MariaDB 的目的是完全兼容 MySQL, 包括 API 和命令行, 使之能轻松成为 MySQL 的代替品. 但在两个分支经过了几年的各自迭代之后, 在一些方面二者出现了一些差异。</p>
+</blockquote>
+<h4 id="1-3-1-安装步骤"><a href="#1-3-1-安装步骤" class="headerlink" title="1.3.1 安装步骤:"></a>1.3.1 安装步骤:</h4><p>首先, 从<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/repo/yum/">MySQL官网</a>下载 MySQL 的 Yum Repository. 根据 CentOS 和 MySQL 的版本,选择下载相对应的文件。本文选择红色方框的文件。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0049.png" alt="图片"></p>
+<p>Yum 是一个基于 rpm 的软件包管理器, 它可以从指定的服务器自动下载 RPM 包并且安装, 可以自动处理依赖性关系, 并且一次安装所有依赖的软体包, 无须繁琐地一次次下载、安装。</p>
+<p>下载命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>用 yum 命令安装下载好的 rpm 包.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql80-community-release-el7-2.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>安装 MySQL 服务器.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql-community-server</span><br></pre></td></tr></table></figure>
+<p>这一步由于要下载安装文件, 可能会花一些时间.  安装完成后就会覆盖掉之前的 mariadb。<br>当出现如下图所示的内容,则代表 MySQL 就安装完成了。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0050.png" alt="图片"></p>
+<h4 id="1-3-2-MySQL-数据库设置"><a href="#1-3-2-MySQL-数据库设置" class="headerlink" title="1.3.2 MySQL 数据库设置"></a>1.3.2 MySQL 数据库设置</h4><p>启动 MySQL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start  mysqld.service</span><br></pre></td></tr></table></figure>
+<p>查看 MySQL 运行状态, Active 后面的状态代表启功服务后为 active (running), 停止后为 inactive (dead), 运行状态如图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status mysqld.service</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0051.png" alt="图片"></p>
+<p>重新启动 Mysql 和停止 Mysql 的命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart  #重新启动 Mysql</span><br><span class="line">systemctl stop mysqld.service   #停止 Mysql</span><br></pre></td></tr></table></figure>
+<p>此时 MySQL 已经开始正常运行, 不过要想进入 MySQL 还得先找出此时 root 用户的密码, 通过如下命令可以在日志文件中找出密码：<br>为了加强安全性, MySQL8.0 为 root 用户随机生成了一个密码, 在 error log 中, 关于 error log 的位置, 如果安装的是 RPM 包, 则默认是&#x2F;var&#x2F;log&#x2F;mysqld.log.  只有启动过一次 mysql 才可以查看临时密码</p>
+<p>使用命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+<p>查看初始的随机密码:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0052.png" alt="图片"></p>
+<p>登录 root 用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>然后输入上述查到的初始密码. 登录后还不能做任何查询或建库操作, 因为 MySQL 默认必须修改初始的随机密码之后才能操作数据库,否则会报错:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0053.png" alt="图片"></p>
+<p>修改密码为”123456”, 注意结尾要有分号, 表示语句的结束。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;123456&#x27;;</span><br></pre></td></tr></table></figure>
+<p>这里有个问题, 新密码设置的时候如果设置的过于简单会报错：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0054.png" alt="图片"></p>
+<p>原因是因为 MySQL 有密码设置的规范, 具体是与 validate_password_policy 的值有关：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch00541.png" alt="图片"></p>
+<p>MySQL 完整的初始密码规则可以通过如下命令查看：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0055.png" alt="图片"></p>
+<p>密码的长度是由 validate_password_length 决定的, 而 validate_password_length 的计算公式是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validate_password_length = validate_password_number_count + validate_password_special_char_count + (2 * validate_password_mixed_case_count)</span><br></pre></td></tr></table></figure>
+<p>如果想要设置简单的密码必须要修改约束, 修改两个全局参数：</p>
+<ul>
+<li><strong>validate_password_policy</strong>代表密码策略, 默认是 1：符合长度, 且必须含有数字, 小写或大写字母, 特殊字符. 设置为 0 判断密码的标准就基于密码的长度了. 一定要先修改两个参数再修改密码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global validate_password.policy=0;</span><br></pre></td></tr></table></figure></li>
+<li><strong>validate_password_length</strong>代表密码长度, 最小值为 4<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global validate_password.length=4; </span><br></pre></td></tr></table></figure>
+修改完,如图</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0056.png" alt="图片"></p>
+<p>此时密码就可以设置的很简单, 例如 1234 之类的. 到此数据库的密码设置就完成了。</p>
+<p>但此时还有一个问题, 就是因为安装了 Yum Repository, 以后每次 yum 操作都会自动更新, 如不需要更新, 可以把这个 yum 卸载掉：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum -y remove mysql80-community-release-el7-2.noarch</span><br></pre></td></tr></table></figure>
+
+<p>在 CentOS 中 MySQL 的主要配置所在的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 /etc/my.cnf 这是 mysql 的主配置文件</span><br><span class="line">2 /var/lib/mysql mysql 数据库的数据库文件存放位置</span><br><span class="line">3 /var/log mysql 数据库的日志输出存放位置</span><br></pre></td></tr></table></figure>
+<p>一些可能会用到的设置:</p>
+<p>设置表名为大小写不敏感:</p>
+<p>1.用root帐号登录后, 使用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop mysqld.service</span><br></pre></td></tr></table></figure>
+<p>停止MySQL数据库服务，修改vi &#x2F;etc&#x2F;my.cnf，在[mysqld]下面添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lower_case_table_names=1</span><br></pre></td></tr></table></figure>
+<p>这里的参数  0 表示区分大小写，1 表示不区分大小写.<br>2.做好数据备份，然后使用下述命令删除数据库数据(删除后, 数据库将恢复到刚安装的状态)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /var/lib/mysql</span><br></pre></td></tr></table></figure>
+<p>3.重启数据库 ,此时数据库恢复到初始状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br></pre></td></tr></table></figure>
+<p>4.重复安装时的操作, 查找临时密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+<p>5.修改密码. 密码8位以上, 大小写符号数据. 如想要使用简单密码, 需按照上述安装流程中的步骤进行操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;****&#x27;;update user set host = &quot;%&quot; where user=&#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
+<p>6.刷新MySQL的系统权限相关表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>此时, MySQL的表名的大小写不再敏感。</p>
+<h4 id="1-3-3-设置远程连接"><a href="#1-3-3-设置远程连接" class="headerlink" title="1.3.3 设置远程连接:"></a>1.3.3 设置远程连接:</h4><p>如果你想要在另外一台电脑上连接 centos 上安装的 MySQL, 那么还需要一些其他的设置。</p>
+<p>首先需要将 MySQL 设置为可以远程连接，设置 mysql 库的 user 表中帐号的 host 为%, %表示可以从任意 ip 连接 mysql, 为了安全性, 也可以设置为你自己所用于连接 centos 上 MySQL 的电脑所使用的 IP。</p>
+<p>其次, MYSQL 8.0 内新增加 mysql_native_password 函数，通过更改这个函数密码来进行远程连接。</p>
+<p>例如，更改 root 用户的 native_password 密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED WITH mysql_native_password BY&#x27;MyPass@123&#x27;;</span><br></pre></td></tr></table></figure>
+<p>接下来为 centos 的防火墙开启 MySQL 所使用的 3306 端口,并重新加载防火墙:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<p>完成上述设置后, 重新启动 MySQL 服务:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart  #重新启动 Mysql</span><br></pre></td></tr></table></figure>
+<p>最后, 在另外一台电脑上, 使用下一节介绍的各类客户端工具进行连接测试。</p>
+<h2 id="2-连接-MySQL-并执行-SQL-查询"><a href="#2-连接-MySQL-并执行-SQL-查询" class="headerlink" title="2. 连接 MySQL 并执行 SQL 查询"></a>2. 连接 MySQL 并执行 SQL 查询</h2><p>在安装成功MySQL后, 我们可以通过开始菜单-&gt;控制面板-&gt;管理工具-&gt;服务中查找并开启或关闭MySQL服务. 开启服务后, MySQL Server将以后台服务的形式在你的电脑上运行. 如果想要进行查询, 还需要使用命令行工具或者其他更加友好的应用程序连接到MySQL服务。</p>
+<h3 id="2-0-使用命令行方式连接MySQL服务（推荐指数-star-star-star-）"><a href="#2-0-使用命令行方式连接MySQL服务（推荐指数-star-star-star-）" class="headerlink" title="2.0 使用命令行方式连接MySQL服务（推荐指数 :star: :star: :star:）"></a>2.0 使用命令行方式连接MySQL服务（推荐指数 :star: :star: :star:）</h3><p>连接数据库的最基本的⽅式, 是使用命令⾏. 以win10为例, 在完成 MySQL 服务的安装后, 在开始菜单找到刚才安装好的 MySQL 8.0 命令⾏⼯具,单击即可打开:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0057.png" alt="图片"></p>
+<p>输⼊你在安装过程中为root用户设置的密码即可连接到数据库, 看到如下界⾯, 表示数据库安装成功,并且你已经使用命令行连接到了数据库(图中红框表示数据库版本), 在最后的 “mysql&gt;” 后即可输入SQL命令执行各种数据库操作。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0058.png" alt="图片"></p>
+<p>但是使用命令行在做数据查询时, 在查询结果的显示和导出方面有诸多不便, 特别是当我们对 SQL 查询不熟练的时候, 这种方式不利于我们进行查询语句的修改和调试. 因此本教程将选择查询界面更加友好的客户端工具(使用MySQL Workbench)来连接数据库, 这种通过命令行连接的方式暂时不再使用。</p>
+<blockquote>
+<p>常见的可用于连接MySQL数据库并进行查询等操作的管理工具包括开源软件 MySQL Workbench, HeidiSQL和DBeaver, 以及商业软件Navicat(有免费版和14天试用版),SQLyog(有免费的社区版)和DataGrip等等。</p>
+</blockquote>
+<h3 id="2-1-选学-使用-MySQL-Workbench-连接-MySQL（极不推荐-exclamation-exclamation-exclamation-）"><a href="#2-1-选学-使用-MySQL-Workbench-连接-MySQL（极不推荐-exclamation-exclamation-exclamation-）" class="headerlink" title="2.1 [选学]使用 MySQL Workbench 连接 MySQL（极不推荐 :exclamation::exclamation::exclamation:）"></a>2.1 [选学]使用 MySQL Workbench 连接 MySQL（极不推荐 :exclamation::exclamation::exclamation:）</h3><p>MySQL Workbench 是 MySQL 官方的客户端工具, 支持windows, macOS和Linux. 对于windows用户, 我们在安装 MySQL 的时候由于选择的是完整安装模式, 因此也同时安装了这个工具, 对于macOS的用户, 可以在<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a>选择macOS版本进行下载安装. MySQL Workbench 是一款功能强大的数据库管理工具, 它既可以用于设计数据库, 也可以用于连接数据库进行查询, 我们这个课程主要使用它的连接数据库进行查询的功能。</p>
+<p>虽然是官方提供的客户端工具，但是使用过程中很容易出现莫名其妙的报错，建议选取其他类型的客户端。</p>
+<p>如果你使用的是windows 7 操作系统, 打开 MySQL Workbench 后, 会有如下提示:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0059.png" alt="图片"></p>
+<p>这是说 MySQL 不再维护win7系统下的MySQL Workbench, 但并不影响使用. 打开MySQL Workbench后, 使用快捷键 ctrl+u,或者点击菜单栏里的 Database-&gt;Connect to Database, 进入数据库连接的设置界面, 如下图所示:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0060.png" alt="图片"></p>
+<p>然后如下图红框中设置连接本机的 MySQL8.0, 输入密码并点击 OK:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0061.png" alt="图片"></p>
+<p>如果弹出如下对话框,表示 MySQL 服务器设置为对于表名和列名的大小写敏感, 但由于 windows 系统默认的是大小写不敏感, 因此当表名或列名有大写字母时, 即使写的 SELECT 语句中正确地使用了大写的表名, 程序也无法正确执行. 这时候建议大家在开始学习查询之前,把表名逐一更改为小写。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0062.png" alt="图片"></p>
+<p>打开后的界⾯</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0063.png" alt="图片"></p>
+<p>在中间的编辑器里, 就可以写 SQL 查询了。</p>
+<p>下一次打开软件时, 可以直接点击保存的数据库连接, 不需要先进行设置后再连接了:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0064.png" alt="图片"></p>
+<h3 id="2-2-选学-使用-HeidiSQL-连接-MySQL（推荐指数-star-star-star-）"><a href="#2-2-选学-使用-HeidiSQL-连接-MySQL（推荐指数-star-star-star-）" class="headerlink" title="2.2 [选学]使用 HeidiSQL 连接 MySQL（推荐指数 :star: :star: :star:）"></a>2.2 [选学]使用 HeidiSQL 连接 MySQL（推荐指数 :star: :star: :star:）</h3><p>HeidiSQL 是一款功能非常强大的开源免费的数据库客户端软件, 采用 Delphi 语言开发, 支持 Windows 操作系统. 支持 MySQL、Postgresql、MariaDB、Percona Server 和微软的 SQL Server, 官网下载地址:<a target="_blank" rel="noopener" href="https://www.heidisql.com/download.php">https://www.heidisql.com/download.php</a>, 下载 portable 版本后, 解压缩就可以使用。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0065.png" alt="图片"></p>
+<p>点击文件夹中的 heidisql.exe, 在弹出对话框里点击”新建”, 然后填写密码, 再点击”打开”即可连接到本机上安装的 MySQL 数据库。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0066.png" alt="图片"></p>
+<p>软件的主界面如图所示:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0067.png" alt="图片"></p>
+<h3 id="2-3-选学-使用-DBeaver-连接-MySQL（推荐指数-star-star-star-）"><a href="#2-3-选学-使用-DBeaver-连接-MySQL（推荐指数-star-star-star-）" class="headerlink" title="2.3 [选学]使用 DBeaver 连接 MySQL（推荐指数 :star: :star: :star:）"></a>2.3 [选学]使用 DBeaver 连接 MySQL（推荐指数 :star: :star: :star:）</h3><p>DBeaver 是一款基于 Java 开发的 <strong>免费和开源(GPL)</strong> 的通用数据库管理工具和 SQL 客户端, 提供 Windows, macOS和Linux全平台支持, 能够连接包括 <code>MySQL, PostgreSQL, Oracle, DB2, SQL Server, Sybase, Mimer, HSQLDB, Derby</code> 等主流数据库软件在内的绝大多数兼容 JDBC 驱动的数据库。DBeaver 提供一个图形界面用来查看数据库结构、执行 SQL 查询和脚本, 浏览和导出数据, 处理 BLOB&#x2F;CLOB 数据, 修改数据库结构等等。</p>
+<p>由于是开源软件, 大家可直接从官网(<a target="_blank" rel="noopener" href="https://dbeaver.io/">https://dbeaver.io/</a>)下载, 安装完成后, 打开软件, 点击”文件”菜单下的”新建连接”图标, 并选择 MySQL:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0068.png" alt="图片"></p>
+<p>然后点击下一步:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0069.png" alt="图片"></p>
+<p>在下方弹出的设置窗口中, “服务器地址”使用默认的localhost, “数据库”暂时留空, 然后在下方填入自己设置的密码, 最后点击测试连接。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0070.png" alt="图片"></p>
+<p>本次学习主要使用一个新建的 shop 数据库, 但因为相关数据我们还没导入(建库建表及数据导入的脚本在本章第三节),因此数据库这里先留空. 等下一步导入数据后, 再进一步修改连接参数。</p>
+<p>首次连接时会提示需要下载驱动程序</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0071.png" alt="图片"></p>
+<p>完成驱动程序的下载后, 如果弹出如下对话框, 则表示连接成功:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/./img/ch00/ch0072.png" alt="图片"></p>
+<p>点击确定并保存连接后, 以后就可以直接双击这个连接进行数据库连接了.  如果需要保存多个数据库连接, 可以使用快捷键 F2 或选中当前连接并点击鼠标右键后选择”重命名”为当前连接起一个便于识别的名称。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0073.png" alt="图片"></p>
+<p>接下来就可以开始写你的第一个 SQL 语句了: 如上图这样,选中刚刚保存的连接, 鼠标右键选第一个按钮”SQL 编辑器”, 或者直接使用快捷键 F3, 就会打开一个 SQL 编辑器, 然后就可以在这里编写 SQL 语句了。</p>
+<p>例如我们可以使用如下语句完成本教程所使用的示例数据库的创建:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0074.png" alt="图片"></p>
+<p>注意, 在使用创建数据库的语句时, 是无需在红框中选中数据库的, 但其他所有的创建表,导入数据, 和最常用的查询语句, 都需要选中相应的数据库. 在执行上述语句后, 我们可以回到连接设置里, 把默认数据库连接改为刚才创建的 shop。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ch0075.png" alt="图片"></p>
+<h3 id="2-4-选学-使用-Navicat-连接-MySQL（推荐指数-star-star-star-star-star-）"><a href="#2-4-选学-使用-Navicat-连接-MySQL（推荐指数-star-star-star-star-star-）" class="headerlink" title="2.4 [选学]使用 Navicat 连接 MySQL（推荐指数 :star: :star: :star: :star: :star:）"></a>2.4 [选学]使用 Navicat 连接 MySQL（推荐指数 :star: :star: :star: :star: :star:）</h3><p>Navicat 包含了一系列的功能强大的数据库管理软件, 主要有: 完整功能版的 Navicat Premium, 以及专门用于MySQL数据库管理的 Navicat for MySQL, 用于PostgreSQL数据库管理的 Navicat forPostgreSQL, 用于SQL Server数据库管理的 Navicat for SQL Server, 用于Oracle数据库管理的 Navicat for Oracle, 等等, 但它提供的免费的版本 Navicat Lite 已足够本次课程使用。</p>
+<blockquote>
+<p>注:<br>Navicat 官网已经不再提供 Navicat Lite 的下载了, 但可以通过搜索引擎找到 Navicat Lite  的历史版本的下载链接. 此外, 也可以从 Navicat 官网下载 Navicat Premium 或 Navicat for MySQL 的14天试用版。</p>
+</blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1xdAEXkATNfIS_yhYNROlAQ">https://pan.baidu.com/s/1xdAEXkATNfIS_yhYNROlAQ</a></p>
+<p>提取码：vktl</p>
+<h3 id="2-5-选学-使用-SQLyog-连接-MySQL（推荐指数-star-star-star-star-）"><a href="#2-5-选学-使用-SQLyog-连接-MySQL（推荐指数-star-star-star-star-）" class="headerlink" title="2.5 [选学]使用 SQLyog 连接 MySQL（推荐指数 :star: :star: :star: :star:）"></a>2.5 [选学]使用 SQLyog 连接 MySQL（推荐指数 :star: :star: :star: :star:）</h3><p>SQLyog 是业界著名的 Webyog 公司出品的一款简洁高效、功能强大的图形化 MySQL 数据库管理工具. SQLyog 的企业版是收费软件, 但该软件也提供了社区版供大家使用, 虽然在功能上有些限制, 但对于本课程已经足够用了。SQLyog 社区版的下载地址为<a target="_blank" rel="noopener" href="https://github.com/webyog/sqlyog-community/wiki/Downloads">https://github.com/webyog/sqlyog-community/wiki/Downloads</a></p>
+<h3 id="2-6-选学-DataGrip的安装和连接MySQL（推荐指数-star-star-star-star-）"><a href="#2-6-选学-DataGrip的安装和连接MySQL（推荐指数-star-star-star-star-）" class="headerlink" title="2.6 [选学]DataGrip的安装和连接MySQL（推荐指数 :star: :star: :star: :star:）"></a>2.6 [选学]DataGrip的安装和连接MySQL（推荐指数 :star: :star: :star: :star:）</h3><p>DataGrip是大名鼎鼎的 JetBrains 出品的数据库工具, 支持windows, macOS和Linux操作系统。</p>
+<h2 id="3-创建学习用的数据库"><a href="#3-创建学习用的数据库" class="headerlink" title="3. 创建学习用的数据库"></a>3. 创建学习用的数据库</h2><p>根据《SQL基础教程》提供的MySQL版本的数据库,数据表的创建以及数据导入的代码, 经过一些修改, 创建了一份 sql 脚本, 运行该脚本可以一步到位地创建本文档所需的数据库shop及其中所有的表,并插入本教程所需要的所有数据。</p>
+<p>下述SQL脚本可用于创建本教程所使用的示例数据库 <code>shop</code> 以及数据库中表的创建和数据的插入。</p>
+<p>详见 <a target="_blank" rel="noopener" href="https://github.com/datawhalechina/wonderful-sql/blob/main/materials/create_table_sql/shop.sql">https://github.com/datawhalechina/wonderful-sql/blob/main/materials/create_table_sql&#x2F;shop.sql</a></p>
+<p>不同客户端的 SQL 脚本导入方法有所不同，<a target="_blank" rel="noopener" href="https://blog.csdn.net/yangjiacho/article/details/122503793">navicat 导入 SQL 文件参考地址</a> 。导入后看不到数据库表的话，请尝试刷新数据库，一般刷新后就可以看到导入的表了。</p>
+<blockquote>
+<p>SQL 脚本的一些要点– v 2020-09-08</p>
+<blockquote>
+<ol>
+<li><p>存储引擎使用 InnoDB, 字符集改为 utf8mb4 以更好地支持中文。</p>
+</li>
+<li><p>所有表名所使用的英文字母都改为小写(后续章节中,SQL 查询中的表名也需要相应修改为小写)</p>
+</li>
+<li><p>所有列名所使用的英文字母确认为小写(后续章节中,SQL 查询中的列名也需要相应修改为小写)</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li>MySQL Workbench 已测试通过(在win10 使用 MySQL Workbench 8.0.21)</li>
+<li>DBeaver 已测试通过(使用”执行 SQL 脚本(CTR+x)”) (在win10 使用 DBeaver7.2.0)</li>
+<li>HeidiSQL 已测试通过(在win10 使用HeidiSQL 11.0.0)</li>
+<li>navicat 已测试通过(在win10&amp;win7 使用 navicat premium 15.0.17)</li>
+<li>sqlyog 已测试通过(在win10 使用 SQLyog 12.09)</li>
+<li>命令行 win10 下测试未通过. 插入中文数据时提示” Data too long for column ‘product_name’ at row 1”，建议使用客户端进行数据库的创建和数据导入。</li>
+</ul>
+</blockquote>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" title="头像" alt="头像"></a><div class="post-copyright__author_name">rescal-xuan</div><div class="post-copyright__author_desc">人间无事人</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/')">sql-环境搭建</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=sql-环境搭建&amp;url=https://rescal-xuan.github.io/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/116327853?v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/05/09/wonderful-sql/ch01_%E5%88%9D%E8%AF%86%E6%95%B0%E6%8D%AE%E5%BA%93/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">sql-初识数据库</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/09/wonderful-sql/ch04_%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">sql-集合运算</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">rescal-xuan</h1><div class="author-info__desc">人间无事人</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/rescal-xuan" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC0%E7%AB%A0%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">第0章：环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E9%87%8D%E7%82%B9"><span class="toc-number">1.0.1.</span> <span class="toc-text">本章重点:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.0.2.</span> <span class="toc-text">目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-MySQL-8-0-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">1. MySQL 8.0 的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-windows-%E4%B8%8B-MySQL-8-0-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 windows 下 MySQL 8.0 的下载安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1.1 下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.1.2 安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-macOS-%E4%B8%8B-MySQL-8-0-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 macOS 下 MySQL 8.0 的下载安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Linux-%E4%B8%8B-MySQL-8-0-%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 Linux 下 MySQL 8.0 的下载安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1 安装步骤:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 MySQL 数据库设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-%E8%AE%BE%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">1.3.3 设置远程连接:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%9E%E6%8E%A5-MySQL-%E5%B9%B6%E6%89%A7%E8%A1%8C-SQL-%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.</span> <span class="toc-text">2. 连接 MySQL 并执行 SQL 查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-0-%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F%E8%BF%9E%E6%8E%A5MySQL%E6%9C%8D%E5%8A%A1%EF%BC%88%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.0 使用命令行方式连接MySQL服务（推荐指数 :star: :star: :star:）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%80%89%E5%AD%A6-%E4%BD%BF%E7%94%A8-MySQL-Workbench-%E8%BF%9E%E6%8E%A5-MySQL%EF%BC%88%E6%9E%81%E4%B8%8D%E6%8E%A8%E8%8D%90-exclamation-exclamation-exclamation-%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.1 [选学]使用 MySQL Workbench 连接 MySQL（极不推荐 :exclamation::exclamation::exclamation:）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%80%89%E5%AD%A6-%E4%BD%BF%E7%94%A8-HeidiSQL-%E8%BF%9E%E6%8E%A5-MySQL%EF%BC%88%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.2 [选学]使用 HeidiSQL 连接 MySQL（推荐指数 :star: :star: :star:）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%80%89%E5%AD%A6-%E4%BD%BF%E7%94%A8-DBeaver-%E8%BF%9E%E6%8E%A5-MySQL%EF%BC%88%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.3 [选学]使用 DBeaver 连接 MySQL（推荐指数 :star: :star: :star:）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E9%80%89%E5%AD%A6-%E4%BD%BF%E7%94%A8-Navicat-%E8%BF%9E%E6%8E%A5-MySQL%EF%BC%88%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-star-star-%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.4 [选学]使用 Navicat 连接 MySQL（推荐指数 :star: :star: :star: :star: :star:）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E9%80%89%E5%AD%A6-%E4%BD%BF%E7%94%A8-SQLyog-%E8%BF%9E%E6%8E%A5-MySQL%EF%BC%88%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-star-%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.5 [选学]使用 SQLyog 连接 MySQL（推荐指数 :star: :star: :star: :star:）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E9%80%89%E5%AD%A6-DataGrip%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%9E%E6%8E%A5MySQL%EF%BC%88%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0-star-star-star-star-%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">2.6 [选学]DataGrip的安装和连接MySQL（推荐指数 :star: :star: :star: :star:）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%AD%A6%E4%B9%A0%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">3. 创建学习用的数据库</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/09/wonderful-sql/ch02_%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%E4%B8%8E%E6%8E%92%E5%BA%8F/" title="sql-基础查询与排序">sql-基础查询与排序</a><time datetime="2024-05-09T13:36:24.619Z" title="Created 2024-05-09 13:36:24">2024-05-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/09/wonderful-sql/ch03_%E5%A4%8D%E6%9D%82%E4%B8%80%E7%82%B9%E7%9A%84%E6%9F%A5%E8%AF%A2/" title="sql-复杂查询">sql-复杂查询</a><time datetime="2024-05-09T13:36:24.619Z" title="Created 2024-05-09 13:36:24">2024-05-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/09/wonderful-sql/ch05_SQL%E9%AB%98%E7%BA%A7%E5%A4%84%E7%90%86/" title="sql-SQL高级处理">sql-SQL高级处理</a><time datetime="2024-05-09T13:36:24.619Z" title="Created 2024-05-09 13:36:24">2024-05-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/09/wonderful-sql/ch04_%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97/" title="sql-集合运算">sql-集合运算</a><time datetime="2024-05-09T13:36:24.619Z" title="Created 2024-05-09 13:36:24">2024-05-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/09/wonderful-sql/ch00_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="sql-环境搭建">sql-环境搭建</a><time datetime="2024-05-09T13:36:24.613Z" title="Created 2024-05-09 13:36:24">2024-05-09</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By rescal-xuan</div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">5</div></a></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="Display Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>Display Mode</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><span> 音乐馆</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>1</sup></a><a href="/tags/python%E7%88%AC%E8%99%AB/" style="font-size: 0.88rem;">python爬虫<sup>1</sup></a><a href="/tags/pytorch/" style="font-size: 0.88rem;">pytorch<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">机器学习<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("05/01/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 rescal-xuan 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/01/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
