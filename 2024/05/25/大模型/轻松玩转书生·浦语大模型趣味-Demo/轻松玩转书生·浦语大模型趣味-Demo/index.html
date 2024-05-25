@@ -1,0 +1,521 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>轻松玩转书生·浦语大模型趣味 Demo | xuan</title><meta name="keywords" content="大模型"><meta name="author" content="rescal-xuan"><meta name="copyright" content="rescal-xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="轻松玩转书生·浦语大模型趣味 Demo"><meta name="application-name" content="轻松玩转书生·浦语大模型趣味 Demo"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta name="referrer" content="no-referrer"><meta property="og:type" content="article"><meta property="og:title" content="轻松玩转书生·浦语大模型趣味 Demo"><meta property="og:url" content="https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/index.html"><meta property="og:site_name" content="xuan"><meta property="og:description" content="轻松玩转书生·浦语大模型趣味 Demo1、部署 InternLM2-Chat-1.8B 模型进行智能对话1 .1配置基础环境在 terminal 中输入环境配置命令 123conda create -n demo python&amp;#x3D;&amp;#x3D;3.10 -yconda activate democonda ins"><meta property="og:locale" content="en"><meta property="og:image" content="https://avatars.githubusercontent.com/u/116327853?v=4"><meta property="article:author" content="rescal-xuan"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://avatars.githubusercontent.com/u/116327853?v=4"><meta name="description" content="轻松玩转书生·浦语大模型趣味 Demo1、部署 InternLM2-Chat-1.8B 模型进行智能对话1 .1配置基础环境在 terminal 中输入环境配置命令 123conda create -n demo python&amp;#x3D;&amp;#x3D;3.10 -yconda activate democonda ins"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"xuan","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"Author: rescal-xuan","link":"Link: ","source":"Source: xuan","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.","copySuccess":"Copy success, copy and reprint please mark the address of this article"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'xuan',
+  title: '轻松玩转书生·浦语大模型趣味 Demo',
+  postAI: '',
+  pageFillDescription: '轻松玩转书生·浦语大模型趣味 Demo, 1、部署 InternLM2-Chat-1.8B 模型进行智能对话, 1 .1配置基础环境, 1.2 下载 InternLM2-Chat-1.8B 模型, 1.3 运行 cli_demo, 实战：部署 八戒-Chat-1.8B 模型, 配置基础环境, 下载运行 Chat-八戒 Demo, 实战：使用 Lagent 运行 InternLM2-Chat-7B 模型, 初步介绍 Lagent 相关知识, 配置基础环境, 使用 Lagent 运行 InternLM2-Chat-7B 模型为内核的智能体轻松玩转书生浦语大模型趣味部署模型进行智能对话配置基础环境在中输入环境配置命令配置完成后进入到新创建的环境之中输入以下命令完成环境包的安装下载模型按路径创建文件夹并进入到对应文件目录中双击打开文件复制以下代码创建保存模型目录是模型保存到本地的目录执行命令下载模型参数文件运行双击打开文件复制以下代码书生浦语书生浦语上海人工智能实验室书生浦语中文输入命令执行程序等待模型加载完成键入内容示例请创作一个字的小故事输出结果在一个小村庄里住着一只名叫小花的猫小花是一只善良聪明勤劳的猫它总是乐于助人帮助村里的人们解决困难一天小花发现村里的一位老奶奶年纪大了行动不便无法自己出门小花决定帮助老奶奶于是她找到了一辆自行车并帮助老奶奶骑了上去当老奶奶坐上自行车后小花开始教老奶奶如何骑车老奶奶一开始有些害怕但是小花耐心地教她如何握住把手如何踩踏板老奶奶很快就学会了小花继续教老奶奶如何转弯和刹车老奶奶非常高兴感激地对小花说谢谢你小花你真是我的好帮手从此以后小花一直陪伴着老奶奶帮助她照顾家庭和邻居小花知道帮助别人是一种快乐也是一种责任这个故事告诉我们只要我们愿意帮助别人我们就能够成为别人的朋友和支持者同时我们也应该尊重别人的困难和需要给予他们帮助和支持实战部署八戒模型配置基础环境运行环境命令使用命令来获得仓库内的文件下载运行八戒在中执行待程序下载完成后输入运行命令打开后等待加载完成即可进行对话键入内容示例如下你好请自我介绍实战使用运行模型初步介绍相关知识是一个轻量级开源的基于大语言模型的智能体框架支持用户快速地将一个大语言模型转变为多种类型的智能体并提供了一些典型工具为大语言模型赋能它的整个框架图如下的特性总结如下流式输出提供接口作流式输出本地就能演示酷炫的流式接口统一设计全面升级提升拓展性包括不论是还是推理加速框架一网打尽模型切换可以游刃有余简单的继承和装饰即可打造自己个人的工具集不论还是均可适配与的输入接口保持一致模型到智能体的蜕变只需一步便捷各种的探索实现文档全面升级文档全覆盖配置基础环境输入命令开启环境打开文件子路径使用命令下载相关的代码库源码安装使用运行模型为内核的智能体打开路径打开路径下文件并修改对应位置行左右代码其他代码其他代码输入运行命令点开链接后大约需要分钟完成模型加载打开后会有较长的加载时间勾上数据分析其他的选项不要选择进行计算方面的对话即完成本章节实战键入内容示例请解方程之中的结果优秀作品链接八戒嬛嬛巧耳',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-25 12:21:55',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://avatars.githubusercontent.com/u/116327853?v=4"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">xuan</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><span> 音乐馆</span></a></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> Newest Comments</span></div><div class="aside-list"><span>loading...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>3</sup></a><a href="/tags/python%E7%88%AC%E8%99%AB/" style="font-size: 1.05rem;">python爬虫<sup>10</sup></a><a href="/tags/pytorch/" style="font-size: 1.05rem;">pytorch<sup>1</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">机器学习<sup>1</sup></a><a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.05rem;">环境配置<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">May 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">25</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>大模型</span></a></span></div></div><h1 class="post-title" itemprop="name headline">轻松玩转书生·浦语大模型趣味 Demo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-05-25T12:19:24.000Z" title="Created 2024-05-25 12:19:24">2024-05-25</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-05-25T12:21:55.683Z" title="Updated 2024-05-25 12:21:55">2024-05-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为兰州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>兰州</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/"><header><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" tabindex="-1" itemprop="url">大模型</a><h1 id="CrawlerTitle" itemprop="name headline">轻松玩转书生·浦语大模型趣味 Demo</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">rescal-xuan</span><time itemprop="dateCreated datePublished" datetime="2024-05-25T12:19:24.000Z" title="Created 2024-05-25 12:19:24">2024-05-25</time><time itemprop="dateCreated datePublished" datetime="2024-05-25T12:21:55.683Z" title="Updated 2024-05-25 12:21:55">2024-05-25</time></header><h1 id="轻松玩转书生·浦语大模型趣味-Demo"><a href="#轻松玩转书生·浦语大模型趣味-Demo" class="headerlink" title="轻松玩转书生·浦语大模型趣味 Demo"></a>轻松玩转书生·浦语大模型趣味 Demo</h1><h3 id="1、部署-InternLM2-Chat-1-8B-模型进行智能对话"><a href="#1、部署-InternLM2-Chat-1-8B-模型进行智能对话" class="headerlink" title="1、部署 InternLM2-Chat-1.8B 模型进行智能对话"></a>1、部署 <code>InternLM2-Chat-1.8B</code> 模型进行智能对话</h3><h3 id="1-1配置基础环境"><a href="#1-1配置基础环境" class="headerlink" title="1 .1配置基础环境"></a><strong>1 .1配置基础环境</strong></h3><p><strong>在 <code>terminal</code> 中输入环境配置命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n demo python==3.10 -y</span><br><span class="line">conda activate demo</span><br><span class="line">conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，进入到新创建的 <code>conda</code> 环境之中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate demo</span><br></pre></td></tr></table></figure>
+
+<p>输入以下命令，完成环境包的安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pip install huggingface-hub==0.17.3</span><br><span class="line">pip install transformers==4.34 </span><br><span class="line">pip install psutil==5.9.8</span><br><span class="line">pip install accelerate==0.24.1</span><br><span class="line">pip install streamlit==1.32.2 </span><br><span class="line">pip install matplotlib==3.8.3 </span><br><span class="line">pip install modelscope==1.9.5</span><br><span class="line">pip install sentencepiece==0.1.99</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-下载-InternLM2-Chat-1-8B-模型"><a href="#1-2-下载-InternLM2-Chat-1-8B-模型" class="headerlink" title="1.2 下载 InternLM2-Chat-1.8B 模型"></a>1.2 下载 <code>InternLM2-Chat-1.8B</code> 模型</h3><p>按路径创建文件夹，并进入到对应文件目录中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p demo</span><br><span class="line">touch demo/cli_demo.py</span><br><span class="line">touch demo/download_mini.py</span><br><span class="line">cd demo</span><br></pre></td></tr></table></figure>
+
+<p>双击打开 <code>demo/download_mini.py</code> 文件，复制以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">from modelscope.hub.snapshot_download import snapshot_download</span><br><span class="line"></span><br><span class="line"># 创建保存模型目录</span><br><span class="line">os.system(&quot;mkdir models&quot;)</span><br><span class="line"></span><br><span class="line"># save_dir是模型保存到本地的目录</span><br><span class="line">save_dir=&quot;models&quot;</span><br><span class="line"></span><br><span class="line">snapshot_download(&quot;Shanghai_AI_Laboratory/internlm2-chat-1_8b&quot;, </span><br><span class="line">                  cache_dir=save_dir, </span><br><span class="line">                  revision=&#x27;v1.1.0&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行命令，下载模型参数文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python demo/download_mini.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-运行-cli-demo"><a href="#1-3-运行-cli-demo" class="headerlink" title="1.3 运行 cli_demo"></a><strong>1.3 运行 cli_demo</strong></h3><p>双击打开 <code>demo/cli_demo.py</code> 文件，复制以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from transformers import AutoTokenizer, AutoModelForCausalLM</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model_name_or_path = &quot;/root/models/Shanghai_AI_Laboratory/internlm2-chat-1_8b&quot;</span><br><span class="line"></span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, trust_remote_code=True, device_map=&#x27;cuda:0&#x27;)</span><br><span class="line">model = AutoModelForCausalLM.from_pretrained(model_name_or_path, trust_remote_code=True, torch_dtype=torch.bfloat16, device_map=&#x27;cuda:0&#x27;)</span><br><span class="line">model = model.eval()</span><br><span class="line"></span><br><span class="line">system_prompt = &quot;&quot;&quot;You are an AI assistant whose name is InternLM (书生·浦语).</span><br><span class="line">- InternLM (书生·浦语) is a conversational language model that is developed by Shanghai AI Laboratory (上海人工智能实验室). It is designed to be helpful, honest, and harmless.</span><br><span class="line">- InternLM (书生·浦语) can understand and communicate fluently in the language chosen by the user such as English and 中文.</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">messages = [(system_prompt, &#x27;&#x27;)]</span><br><span class="line"></span><br><span class="line">print(&quot;=============Welcome to InternLM chatbot, type &#x27;exit&#x27; to exit.=============&quot;)</span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">    input_text = input(&quot;\nUser  &gt;&gt;&gt; &quot;)</span><br><span class="line">    input_text = input_text.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">    if input_text == &quot;exit&quot;:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">    length = 0</span><br><span class="line">    for response, _ in model.stream_chat(tokenizer, input_text, messages):</span><br><span class="line">        if response is not None:</span><br><span class="line">            print(response[length:], flush=True, end=&quot;&quot;)</span><br><span class="line">            length = len(response)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输入命令，执行 Demo 程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda activate demo</span><br><span class="line">python demo/cli_demo.py</span><br></pre></td></tr></table></figure>
+
+<p>等待模型加载完成，键入内容示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请创作一个 300 字的小故事</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">在一个小村庄里，住着一只名叫小花的猫。小花是一只善良、聪明、勤劳的猫，它总是乐于助人，帮助村里的人们解决困难。</span><br><span class="line"></span><br><span class="line">一天，小花发现村里的一位老奶奶年纪大了，行动不便，无法自己出门。小花决定帮助老奶奶，于是她找到了一辆自行车，并帮助老奶奶骑了上去。</span><br><span class="line"></span><br><span class="line">当老奶奶坐上自行车后，小花开始教老奶奶如何骑车。老奶奶一开始有些害怕，但是小花耐心地教她如何握住把手、如何踩踏板，老奶奶很快就学会了。</span><br><span class="line"></span><br><span class="line">小花继续教老奶奶如何转弯和刹车，老奶奶非常高兴，感激地对小花说：“谢谢你，小花，你真是我的好帮手。”</span><br><span class="line"></span><br><span class="line">从此以后，小花一直陪伴着老奶奶，帮助她照顾家庭和邻居。小花知道，帮助别人是一种快乐，也是一种责任。</span><br><span class="line"></span><br><span class="line">这个故事告诉我们，只要我们愿意帮助别人，我们就能够成为别人的朋友和支持者。同时，我们也应该尊重别人的困难和需要，给予他们帮助和支持。</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战：部署-八戒-Chat-1-8B-模型"><a href="#实战：部署-八戒-Chat-1-8B-模型" class="headerlink" title="实战：部署 八戒-Chat-1.8B 模型"></a><strong>实战：部署 <code>八戒-Chat-1.8B</code> 模型</strong></h2><h3 id="配置基础环境"><a href="#配置基础环境" class="headerlink" title="配置基础环境"></a><strong>配置基础环境</strong></h3><p>运行环境命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate demo</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>git</code> 命令来获得仓库内的 Demo 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://gitee.com/InternLM/Tutorial -b camp2</span><br><span class="line"># git clone https://github.com/InternLM/Tutorial -b camp2</span><br><span class="line">cd Tutorial</span><br></pre></td></tr></table></figure>
+
+<h3 id="下载运行-Chat-八戒-Demo"><a href="#下载运行-Chat-八戒-Demo" class="headerlink" title="下载运行 Chat-八戒 Demo"></a><strong>下载运行 Chat-八戒 Demo</strong></h3><p>在 <code>Web IDE</code> 中执行 <code>bajie_download.py</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python Tutorial/helloworld/bajie_download.py</span><br></pre></td></tr></table></figure>
+
+<p>待程序下载完成后，输入运行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">streamlit run Tutorial/helloworld/bajie_chat.py --server.address 127.0.0.1 --server.port 6006</span><br></pre></td></tr></table></figure>
+
+<p>打开 <a target="_blank" rel="noopener" href="http://127.0.0.1:6006/">http://127.0.0.1:6006</a> 后，等待加载完成即可进行对话，键入内容示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好，请自我介绍</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://github.com/InternLM/Tutorial/blob/camp2/helloworld/images/img-D.png?raw=true" alt="img-D.png"></p>
+<h2 id="实战：使用-Lagent-运行-InternLM2-Chat-7B-模型"><a href="#实战：使用-Lagent-运行-InternLM2-Chat-7B-模型" class="headerlink" title="实战：使用 Lagent 运行 InternLM2-Chat-7B 模型"></a><strong>实战：使用 <code>Lagent</code> 运行 <code>InternLM2-Chat-7B</code> 模型</strong></h2><h3 id="初步介绍-Lagent-相关知识"><a href="#初步介绍-Lagent-相关知识" class="headerlink" title="初步介绍 Lagent 相关知识"></a><strong>初步介绍 Lagent 相关知识</strong></h3><p>Lagent 是一个轻量级、开源的基于大语言模型的智能体（agent）框架，支持用户快速地将一个大语言模型转变为多种类型的智能体，并提供了一些典型工具为大语言模型赋能。它的整个框架图如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://github.com/InternLM/Tutorial/blob/camp2/helloworld/images/Lagent-1.png?raw=true" alt="Lagent-1.png"></p>
+<p>Lagent 的特性总结如下：</p>
+<ul>
+<li>流式输出：提供 stream_chat 接口作流式输出，本地就能演示酷炫的流式 Demo。</li>
+<li>接口统一，设计全面升级，提升拓展性，包括：<ul>
+<li>Model : 不论是 OpenAI API, Transformers 还是推理加速框架 LMDeploy 一网打尽，模型切换可以游刃有余；</li>
+<li>Action: 简单的继承和装饰，即可打造自己个人的工具集，不论 InternLM 还是 GPT 均可适配；</li>
+<li>Agent：与 Model 的输入接口保持一致，模型到智能体的蜕变只需一步，便捷各种 agent 的探索实现；</li>
+</ul>
+</li>
+<li>文档全面升级，API 文档全覆盖。</li>
+</ul>
+<h3 id="配置基础环境-1"><a href="#配置基础环境-1" class="headerlink" title="配置基础环境"></a><strong>配置基础环境</strong></h3><p>输入命令，开启 conda 环境：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate demo</span><br></pre></td></tr></table></figure>
+
+<p>打开文件子路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd demo</span><br></pre></td></tr></table></figure>
+
+<p>使用 git 命令下载 Lagent 相关的代码库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://gitee.com/internlm/lagent.git</span><br><span class="line"># git clone https://github.com/internlm/lagent.git</span><br><span class="line">cd /root/demo/lagent</span><br><span class="line">git checkout 581d9fb8987a5d9b72bb9ebd37a95efd47d479ac</span><br><span class="line">pip install -e . # 源码安装</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用-Lagent-运行-InternLM2-Chat-7B-模型为内核的智能体"><a href="#使用-Lagent-运行-InternLM2-Chat-7B-模型为内核的智能体" class="headerlink" title="使用 Lagent 运行 InternLM2-Chat-7B 模型为内核的智能体"></a><strong>使用 <code>Lagent</code> 运行 <code>InternLM2-Chat-7B</code> 模型为内核的智能体</strong></h3><p>打开 lagent 路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd demo/lagent</span><br></pre></td></tr></table></figure>
+
+<p>打开 <code>lagent</code> 路径下 <code>examples/internlm2_agent_web_demo_hf.py</code> 文件，并修改对应位置 (71行左右) 代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 其他代码...</span><br><span class="line">value=&#x27;/root/models/internlm2-chat-7b&#x27;</span><br><span class="line"># 其他代码...</span><br></pre></td></tr></table></figure>
+
+<p>输入运行命令 - <strong>点开 6006 链接后，大约需要 5 分钟完成模型加载：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">streamlit run /root/demo/lagent/examples/internlm2_agent_web_demo_hf.py --server.address 127.0.0.1 --server.port 6006</span><br></pre></td></tr></table></figure>
+
+<p>打开 <a target="_blank" rel="noopener" href="http://127.0.0.1:6006/">http://127.0.0.1:6006</a> 后，（会有较长的加载时间）勾上数据分析，其他的选项不要选择，进行计算方面的 Demo 对话，即完成本章节实战。键入内容示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请解方程 2*X=1360 之中 X 的结果</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/./img-I.png" alt="Lagent-1.png"><br>优秀作品链接：</p>
+<ul>
+<li><strong>八戒-Chat-1.8B：<a target="_blank" rel="noopener" href="https://www.modelscope.cn/models/JimmyMa99/BaJie-Chat-mini/summary">https://www.modelscope.cn/models/JimmyMa99/BaJie-Chat-mini/summary</a></strong></li>
+<li><strong>Chat-嬛嬛-1.8B：<a target="_blank" rel="noopener" href="https://openxlab.org.cn/models/detail/BYCJS/huanhuan-chat-internlm2-1_8b">https://openxlab.org.cn/models/detail/BYCJS/huanhuan-chat-internlm2-1_8b</a></strong></li>
+<li><strong>Mini-Horo-巧耳：<a target="_blank" rel="noopener" href="https://openxlab.org.cn/models/detail/SaaRaaS/Horowag_Mini">https://openxlab.org.cn/models/detail/SaaRaaS/Horowag_Mini</a></strong></li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" title="头像" alt="头像"></a><div class="post-copyright__author_name">rescal-xuan</div><div class="post-copyright__author_desc">人间无事人</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/')">轻松玩转书生·浦语大模型趣味 Demo</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=轻松玩转书生·浦语大模型趣味 Demo&amp;url=https://rescal-xuan.github.io/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>大模型<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/116327853?v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/05/16/python%E7%88%AC%E8%99%AB/%E7%AC%AC-10-%E7%AB%A0-%E4%BD%BF%E7%94%A8pyecharts-%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">第 10 章  使用pyecharts 进行数据展示</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/116327853?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">rescal-xuan</h1><div class="author-info__desc">人间无事人</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/rescal-xuan" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo"><span class="toc-number">1.</span> <span class="toc-text">轻松玩转书生·浦语大模型趣味 Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%83%A8%E7%BD%B2-InternLM2-Chat-1-8B-%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E6%99%BA%E8%83%BD%E5%AF%B9%E8%AF%9D"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、部署 InternLM2-Chat-1.8B 模型进行智能对话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83"><span class="toc-number">1.0.2.</span> <span class="toc-text">1 .1配置基础环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%B8%8B%E8%BD%BD-InternLM2-Chat-1-8B-%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.0.3.</span> <span class="toc-text">1.2 下载 InternLM2-Chat-1.8B 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E8%BF%90%E8%A1%8C-cli-demo"><span class="toc-number">1.0.4.</span> <span class="toc-text">1.3 运行 cli_demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%EF%BC%9A%E9%83%A8%E7%BD%B2-%E5%85%AB%E6%88%92-Chat-1-8B-%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">实战：部署 八戒-Chat-1.8B 模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置基础环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E8%BF%90%E8%A1%8C-Chat-%E5%85%AB%E6%88%92-Demo"><span class="toc-number">1.1.2.</span> <span class="toc-text">下载运行 Chat-八戒 Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8-Lagent-%E8%BF%90%E8%A1%8C-InternLM2-Chat-7B-%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">实战：使用 Lagent 运行 InternLM2-Chat-7B 模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E4%BB%8B%E7%BB%8D-Lagent-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">初步介绍 Lagent 相关知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">配置基础环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Lagent-%E8%BF%90%E8%A1%8C-InternLM2-Chat-7B-%E6%A8%A1%E5%9E%8B%E4%B8%BA%E5%86%85%E6%A0%B8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93"><span class="toc-number">1.2.3.</span> <span class="toc-text">使用 Lagent 运行 InternLM2-Chat-7B 模型为内核的智能体</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/25/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3-Demo/" title="轻松玩转书生·浦语大模型趣味 Demo">轻松玩转书生·浦语大模型趣味 Demo</a><time datetime="2024-05-25T12:19:24.000Z" title="Created 2024-05-25 12:19:24">2024-05-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/16/python%E7%88%AC%E8%99%AB/%E7%AC%AC-10-%E7%AB%A0-%E4%BD%BF%E7%94%A8pyecharts-%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA/" title="第 10 章  使用pyecharts 进行数据展示">第 10 章  使用pyecharts 进行数据展示</a><time datetime="2024-05-16T09:16:33.000Z" title="Created 2024-05-16 09:16:33">2024-05-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/16/python%E7%88%AC%E8%99%AB/%E7%AC%AC-9%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%A1%88%E4%BE%8B%EF%BC%9APython-%E5%B2%97%E4%BD%8D%E8%A1%8C%E6%83%85/" title="第 9章 数据分析案例：Python 岗位行情">第 9章 数据分析案例：Python 岗位行情</a><time datetime="2024-05-16T09:15:29.000Z" title="Created 2024-05-16 09:15:29">2024-05-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/16/python%E7%88%AC%E8%99%AB/%E7%AC%AC-8%E7%AB%A0-Python-%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6-Scrapy%EF%BC%88%E4%B8%8B%EF%BC%89/" title="第 8章  Python 爬虫框架 Scrapy（下）">第 8章  Python 爬虫框架 Scrapy（下）</a><time datetime="2024-05-16T09:14:19.000Z" title="Created 2024-05-16 09:14:19">2024-05-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/16/python%E7%88%AC%E8%99%AB/%E7%AC%AC-7%E7%AB%A0-Python-%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6-Scrapy%EF%BC%88%E4%B8%8A%EF%BC%89/" title="第 7章  Python 爬虫框架 Scrapy（上）">第 7章  Python 爬虫框架 Scrapy（上）</a><time datetime="2024-05-16T09:12:33.000Z" title="Created 2024-05-16 09:12:33">2024-05-16</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By rescal-xuan</div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">5</div></a></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="Display Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>Display Mode</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 隧道</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><span> 音乐馆</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>3</sup></a><a href="/tags/python%E7%88%AC%E8%99%AB/" style="font-size: 0.88rem;">python爬虫<sup>10</sup></a><a href="/tags/pytorch/" style="font-size: 0.88rem;">pytorch<sup>1</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 0.88rem;">大模型<sup>1</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">机器学习<sup>1</sup></a><a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 0.88rem;">环境配置<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("05/01/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 rescal-xuan 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/01/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
